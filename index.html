@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfolio of Puck Roskamp, graphic designer based in Maastricht, Netherlands." />
+    <title>Puck Roskamp — Portfolio</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body data-page="home">
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a href="index.html" class="brand" aria-label="Puck Roskamp Home">PUCK ROSKAMP</a>
+            <nav aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a class="nav-link" data-page="home" href="index.html">Home</a></li>
+                    <li><a class="nav-link" data-page="work" href="work.html">Work</a></li>
+                    <li><a class="nav-link" data-page="cv" href="cv.html">CV</a></li>
+                    <li><a class="nav-link" data-page="contact" href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section home-hero">
+            <div class="container home-hero-grid">
+                <ul class="home-meta" aria-label="Profiel informatie">
+                    <li>Maastricht, Nederland</li>
+                    <li>2e jaars CMD student @ Zuyd UAS</li>
+                    <li>Op zoek naar stageopportuniteiten</li>
+                </ul>
+
+                <h1 class="hero-title">PUCK ROSKAMP</h1>
+                <p class="hero-intro muted">
+                    Grafisch ontwerper in opleiding, werkend aan gedurfde redactionele visuals met scherpe rasters,
+                    sterke typografie,
+                    en een wat ongezonde liefde voor perfecte spacing.
+                </p>
+            </div>
+        </section>
+
+        <section class="section home-about">
+            <div class="container">
+                <h2 class="home-section-title">Over Mij</h2>
+                <p class="home-about-text">
+                    Hi! Ik ben Puck Roskamp, 20 jaar, grafisch ontwerper gevestigd in Maastricht, Nederland, en
+                    momenteel tweedejaars
+                    student Communication & Multimedia Design aan Hogeschool Zuyd. Ik maak visuele identiteiten,
+                    brandingconcepten en
+                    digitale layouts die sterke typografie combineren met een heldere structuur. Voor mij gaat design
+                    verder dan alleen
+                    beeld; het gaat om verhalen vertellen en ervaringen creëren die blijven hangen. Buiten mijn studie
+                    experimenteer ik
+                    graag met posterontwerpen, ontdek ik creatieve projecten, game ik, luister ik naar muziek terwijl ik
+                    layouts verfijn, en
+                    laat ik me inspireren door alles wat visueel interessant is. Mijn ontwerpen zijn een mix van
+                    nieuwsgierigheid, kleur en
+                    een beetje speelsheid.
+                </p>
+            </div>
+        </section>
+
+        <section class="section home-featured">
+            <div class="container">
+                <h2 class="home-section-title">Recent Werk</h2>
+                <div class="featured-carousel" data-featured-carousel>
+                    <button class="carousel-arrow" type="button" data-carousel-prev
+                        aria-label="Vorig project">←</button>
+
+                    <div class="featured-viewport" aria-live="polite">
+                        <div class="featured-track" data-carousel-track>
+                            <article class="card featured-slide" data-slide>
+                                <a href="project.html?id=sunshift-studio" aria-label="Open project Sunshift Studio">
+                                    <div class="card-media">
+                                        <img src="images/project-01.svg" alt="Sunshift Studio project preview" />
+                                    </div>
+                                    <div class="card-meta">
+                                        <span class="pill">Lorem ipsum</span>
+                                        <h3 class="project-title">Lorem ipsum</h3>
+                                        <p class="muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    </div>
+                                </a>
+                            </article>
+
+                            <article class="card featured-slide" data-slide>
+                                <a href="project.html?id=dune-motion" aria-label="Open project Dune Motion">
+                                    <div class="card-media">
+                                        <img src="images/project-02.svg" alt="Dune Motion project preview" />
+                                    </div>
+                                    <div class="card-meta">
+                                        <span class="pill">Dolor sit</span>
+                                        <h3 class="project-title">Dolor sit</h3>
+                                        <p class="muted">Sed do eiusmod tempor incididunt ut labore et dolore magna
+                                            aliqua.</p>
+                                    </div>
+                                </a>
+                            </article>
+
+                            <article class="card featured-slide" data-slide>
+                                <a href="project.html?id=atelier-north" aria-label="Open project Atelier North">
+                                    <div class="card-media">
+                                        <img src="images/project-03.svg" alt="Atelier North project preview" />
+                                    </div>
+                                    <div class="card-meta">
+                                        <span class="pill">Amet consectetur</span>
+                                        <h3 class="project-title">Amet consectetur</h3>
+                                        <p class="muted">Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                            laboris.</p>
+                                    </div>
+                                </a>
+                            </article>
+                        </div>
+                    </div>
+
+                    <button class="carousel-arrow" type="button" data-carousel-next
+                        aria-label="Volgend project">→</button>
+                </div>
+
+                <div class="featured-dots" role="tablist" aria-label="Recent werk slides">
+                    <button class="featured-dot active" type="button" data-carousel-dot="0"
+                        aria-label="Ga naar project 1"></button>
+                    <button class="featured-dot" type="button" data-carousel-dot="1"
+                        aria-label="Ga naar project 2"></button>
+                    <button class="featured-dot" type="button" data-carousel-dot="2"
+                        aria-label="Ga naar project 3"></button>
+                </div>
+
+                <div class="featured-cta" data-carousel-cta>
+                    <a class="button" href="work.html">Bekijk alles →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="marquee-wrap">
+        <div class="marquee">
+            <span>GRAPHIC DESIGN <span class="dot">•</span></span>
+            <span>VISUAL IDENTITY <span class="dot">•</span></span>
+            <span>TYPOGRAPHY <span class="dot">•</span></span>
+            <span>BRANDING <span class="dot">•</span></span>
+            <span>EDITORIAL DESIGN <span class="dot">•</span></span>
+            <span>BASED IN MAASTRICHT <span class="dot">•</span></span>
+            <span>GRAPHIC DESIGN <span class="dot">•</span></span>
+            <span>VISUAL IDENTITY <span class="dot">•</span></span>
+            <span>TYPOGRAPHY <span class="dot">•</span></span>
+            <span>BRANDING <span class="dot">•</span></span>
+            <span>EDITORIAL DESIGN <span class="dot">•</span></span>
+            <span>BASED IN MAASTRICHT <span class="dot">•</span></span>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-left">
+                <a class="footer-phone" href="tel:+31622130549" aria-label="Call +31 6 22130549">+31 6 22130549</a>
+                <a class="footer-email" href="mailto:puckroskamp@gmail.com">puckroskamp@gmail.com</a>
+            </div>
+
+            <div class="footer-right">
+                <p class="footer-heading">Contact</p>
+                <p class="footer-note">2e jaars CMD student aan Zuyd UAS, Maastricht</p>
+                <ul class="footer-socials" aria-label="Social media links">
+                    <li><a class="footer-social-link"
+                            href="https://www.instagram.com/puck_r27?igsh=MW56YmIwOGhyd3IzeQ%3D%3D&utm_source=qr"
+                            aria-label="Instagram">Instagram</a></li>
+                    <li><a class="footer-social-link" href="#" aria-label="LinkedIn">LinkedIn</a></li>
+                    <li><a class="footer-social-link" href="#" aria-label="Behance">Behance</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js" defer></script>
+</body>
+
+</html>

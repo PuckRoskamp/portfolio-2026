@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="t4 d4">
+  <title id="t4">Noir Form cover</title>
+  <desc id="d4">Monochrome architectural placeholder image</desc>
+  <rect width="1600" height="1000" fill="#ededed"/>
+  <polygon points="0,1000 540,80 1120,1000" fill="#d9d9d9"/>
+  <polygon points="480,1000 1060,160 1600,1000" fill="#bdbdbd"/>
+  <text x="120" y="170" fill="#111" font-size="120" font-family="Arial, sans-serif" font-weight="700">NOIR FORM</text>
+</svg>
