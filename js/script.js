@@ -16,6 +16,35 @@
         yearTarget.textContent = String(new Date().getFullYear());
     }
 
+    // Homepage typewriter intro on the hero name.
+    const heroTitle = document.querySelector('.hero-title');
+    if (bodyPage === 'home' && heroTitle) {
+        const originalText = (heroTitle.textContent || '').trim();
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (originalText.length > 0 && !reducedMotion) {
+            heroTitle.classList.add('is-typewriter');
+            heroTitle.setAttribute('aria-label', originalText);
+            heroTitle.textContent = '';
+
+            let index = 0;
+            const typeNextCharacter = () => {
+                heroTitle.textContent = originalText.slice(0, index + 1);
+                index += 1;
+
+                if (index < originalText.length) {
+                    setTimeout(typeNextCharacter, 85);
+                } else {
+                    heroTitle.classList.add('is-complete');
+                }
+            };
+
+            setTimeout(typeNextCharacter, 280);
+        } else {
+            heroTitle.textContent = originalText;
+        }
+    }
+
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', async (event) => {
@@ -132,110 +161,250 @@
         const projectCaptionA = document.querySelector('[data-project-caption-a]');
         const projectCaptionB = document.querySelector('[data-project-caption-b]');
         const projectCaptionFinal = document.querySelector('[data-project-caption-final]');
+        const projectLiveLink = document.querySelector('[data-project-live-link]');
+        const projectVideoSection = document.querySelector('[data-project-video-section]');
+        const projectVideoTitle = document.querySelector('[data-project-video-title]');
+        const projectVideoAboutFilm = document.querySelector('[data-project-video-about-film]');
+        const projectVideoWhy = document.querySelector('[data-project-video-why]');
+        const projectVideoCaption = document.querySelector('[data-project-video-caption]');
+        const projectVideo = document.querySelector('[data-project-video]');
+        const videoPlayButton = document.querySelector('[data-video-play]');
+        const videoPauseButton = document.querySelector('[data-video-pause]');
+        const videoReplayButton = document.querySelector('[data-video-replay]');
+        const videoTimeTarget = document.querySelector('[data-video-time]');
+        const videoProgress = document.querySelector('[data-video-progress]');
         const pageDescription = document.querySelector('meta[name="description"]');
 
         // ============================================================================
-        // PROJECT DATA: Replace these Coming Soon placeholders with your real projects.
-        // Each key (e.g., 'sunshift-studio') is the project ID from the work.html links.
+        // PROJECT DATA (MAIN PROJECTS)
+        // IMPORTANT:
+        // - Keep these keys equal to work.html links (project.html?id=...)
+        // - Replace per project: titleHtml, intro, details, insights, quote, captions, images
+        // - Image paths should point to /images, for example: images/my-project-hero.jpg
         // ============================================================================
         const projects = {
-            'sunshift-studio': makeComingSoonProject('Coming Soon 01'),
-            'dune-motion': makeComingSoonProject('Coming Soon 02'),
-            'atelier-north': makeComingSoonProject('Coming Soon 03'),
-            'noir-form': makeComingSoonProject('Coming Soon 04'),
-            'static-echo': makeComingSoonProject('Coming Soon 05'),
-            'nexa-objects': makeComingSoonProject('Coming Soon 06')
+            // Card 01 -> project.html?id=project1
+            'project1': {
+                titleHtml: 'Coming Soon<br />01',
+                intro: 'Vervang dit met 1-2 zinnen over het projectdoel en de context.',
+                details: {
+                    date: 'Coming soon',
+                    type: 'In progress',
+                    collab: 'TBA'
+                },
+                insights: {
+                    a: 'Concept: beschrijf hier de creatieve richting en het centrale idee.',
+                    b: 'Proces: leg hier iteraties, tools en keuzes uit.',
+                    c: 'Resultaat: benoem hier het eindresultaat en wat je hebt geleerd.'
+                },
+                quote: 'Vervang deze quote met een kernzin van het project.',
+                captions: {
+                    hero: 'Caption hero image',
+                    a: 'Caption image A',
+                    b: 'Caption image B',
+                    final: 'Caption final image'
+                },
+                images: {
+                    hero: { src: 'images/project-coming-soon.svg', alt: 'Project 01 hero image' },
+                    gridA: { src: 'images/project-coming-soon.svg', alt: 'Project 01 process image A' },
+                    gridB: { src: 'images/project-coming-soon.svg', alt: 'Project 01 process image B' },
+                    final: { src: 'images/project-coming-soon.svg', alt: 'Project 01 final image' }
+                }
+            },
+
+            // Card 02 -> project.html?id=project2
+            'project2': {
+                titleHtml: 'Coming Soon<br />02',
+                intro: 'Vervang dit met 1-2 zinnen over het projectdoel en de context.',
+                details: {
+                    date: 'Coming soon',
+                    type: 'In progress',
+                    collab: 'TBA'
+                },
+                insights: {
+                    a: 'Concept: beschrijf hier de creatieve richting en het centrale idee.',
+                    b: 'Proces: leg hier iteraties, tools en keuzes uit.',
+                    c: 'Resultaat: benoem hier het eindresultaat en wat je hebt geleerd.'
+                },
+                quote: 'Vervang deze quote met een kernzin van het project.',
+                captions: {
+                    hero: 'Caption hero image',
+                    a: 'Caption image A',
+                    b: 'Caption image B',
+                    final: 'Caption final image'
+                },
+                images: {
+                    hero: { src: 'images/project-coming-soon.svg', alt: 'Project 02 hero image' },
+                    gridA: { src: 'images/project-coming-soon.svg', alt: 'Project 02 process image A' },
+                    gridB: { src: 'images/project-coming-soon.svg', alt: 'Project 02 process image B' },
+                    final: { src: 'images/project-coming-soon.svg', alt: 'Project 02 final image' }
+                }
+            },
+
+            // Card 03 -> project.html?id=project3
+            'project3': {
+                titleHtml: 'Spark — Coding Workshop for Students',
+                intro: 'Spark is ontwikkeld binnen een blokproject in het eerste jaar van Communication & Multimedia Design. De opdracht was om in teamverband een interactieve workshop te ontwerpen voor middelbare scholieren, waarin zij op een toegankelijke en speelse manier kennismaken met coderen.',
+                details: {
+                    date: '2025',
+                    type: 'Schoolproject — Teamproject',
+                    collab: 'Teamproject met medestudenten binnen CMD'
+                },
+                insights: {
+                    a: 'Concept: beschrijf hier de creatieve richting en het centrale idee.',
+                    b: 'Proces: leg hier iteraties, tools en keuzes uit.',
+                    c: 'Resultaat: benoem hier het eindresultaat en wat je hebt geleerd.'
+                },
+                quote: 'Vervang deze quote met een kernzin van het project.',
+                captions: {
+                    hero: 'Caption hero image',
+                    a: 'Caption image A',
+                    b: 'Caption image B',
+                    final: 'Caption final image'
+                },
+                images: {
+                    hero: { src: 'images/project3-spark-workshops.svg', alt: 'Project 03 hero image' },
+                    gridA: { src: 'images/project3-spark-workshops.svg', alt: 'Project 03 process image A' },
+                    gridB: { src: 'images/project3-spark-workshops.svg', alt: 'Project 03 process image B' },
+                    final: { src: 'images/project3-spark-workshops.svg', alt: 'Project 03 final image' }
+                },
+                website: {
+                    label: 'Bekijk website ↗',
+                    url: 'https://sparkworkshop.nl/'
+                }
+            },
+
+            // Card 04 -> project.html?id=project4
+            'project4': {
+                titleHtml: 'Coming Soon<br />04',
+                intro: 'Vervang dit met 1-2 zinnen over het projectdoel en de context.',
+                details: {
+                    date: 'Coming soon',
+                    type: 'In progress',
+                    collab: 'TBA'
+                },
+                insights: {
+                    a: 'Concept: beschrijf hier de creatieve richting en het centrale idee.',
+                    b: 'Proces: leg hier iteraties, tools en keuzes uit.',
+                    c: 'Resultaat: benoem hier het eindresultaat en wat je hebt geleerd.'
+                },
+                quote: 'Vervang deze quote met een kernzin van het project.',
+                captions: {
+                    hero: 'Caption hero image',
+                    a: 'Caption image A',
+                    b: 'Caption image B',
+                    final: 'Caption final image'
+                },
+                images: {
+                    hero: { src: 'images/project-coming-soon.svg', alt: 'Project 04 hero image' },
+                    gridA: { src: 'images/project-coming-soon.svg', alt: 'Project 04 process image A' },
+                    gridB: { src: 'images/project-coming-soon.svg', alt: 'Project 04 process image B' },
+                    final: { src: 'images/project-coming-soon.svg', alt: 'Project 04 final image' }
+                }
+            },
+
+            // Card 05 -> project.html?id=project5
+            'project5': {
+                titleHtml: 'Digital Narrative Story — CBS Data',
+                intro: 'Dit project is ontwikkeld binnen een blokproject in het tweede jaar van Communication & Multimedia Design. In samenwerking met het CBS werkten we met bestaande datasets, die we vertaalden naar een interactieve digital narrative story. Het doel was om complexe data begrijpelijk en toegankelijk te maken voor een breed publiek. Door middel van visuele storytelling en interactie hebben we de data omgezet in een helder en boeiend verhaal.',
+                details: {
+                    date: '2026',
+                    type: 'Schoolproject — Teamproject',
+                    collab: 'Centraal Bureau voor de Statistiek (CBS)'
+                },
+                insights: {
+                    a: 'Concept: beschrijf hier de creatieve richting en het centrale idee.',
+                    b: 'Proces: leg hier iteraties, tools en keuzes uit.',
+                    c: 'Resultaat: benoem hier het eindresultaat en wat je hebt geleerd.'
+                },
+                quote: 'Vervang deze quote met een kernzin van het project.',
+                captions: {
+                    hero: 'Caption hero image',
+                    a: 'Caption image A',
+                    b: 'Caption image B',
+                    final: 'Caption final image'
+                },
+                images: {
+                    hero: { src: 'images/project-coming-soon.svg', alt: 'Project 05 hero image' },
+                    gridA: { src: 'images/project-coming-soon.svg', alt: 'Project 05 process image A' },
+                    gridB: { src: 'images/project-coming-soon.svg', alt: 'Project 05 process image B' },
+                    final: { src: 'images/project-coming-soon.svg', alt: 'Project 05 final image' }
+                },
+                website: {
+                    label: 'Bekijk website ↗',
+                    url: 'https://jelger1.github.io/story/'
+                }
+            },
+
+            // Card 06 -> project.html?id=project6
+            'project6': {
+                titleHtml: 'Coming Soon<br />06',
+                intro: 'Vervang dit met 1-2 zinnen over het projectdoel en de context.',
+                details: {
+                    date: 'Coming soon',
+                    type: 'In progress',
+                    collab: 'TBA'
+                },
+                insights: {
+                    a: 'Concept: beschrijf hier de creatieve richting en het centrale idee.',
+                    b: 'Proces: leg hier iteraties, tools en keuzes uit.',
+                    c: 'Resultaat: benoem hier het eindresultaat en wat je hebt geleerd.'
+                },
+                quote: 'Vervang deze quote met een kernzin van het project.',
+                captions: {
+                    hero: 'Caption hero image',
+                    a: 'Caption image A',
+                    b: 'Caption image B',
+                    final: 'Caption final image'
+                },
+                images: {
+                    hero: { src: 'images/project-coming-soon.svg', alt: 'Project 06 hero image' },
+                    gridA: { src: 'images/project-coming-soon.svg', alt: 'Project 06 process image A' },
+                    gridB: { src: 'images/project-coming-soon.svg', alt: 'Project 06 process image B' },
+                    final: { src: 'images/project-coming-soon.svg', alt: 'Project 06 final image' }
+                }
+            },
+
+            // After Effects project with optional video section
+            'ae-sound-of-metal': {
+                titleHtml: 'Sound of Metal<br />Title Sequence',
+                intro: 'Eindproject voor After Effects Basics. Een typografische title sequence waarin ritme, stilte en spanning uit de film visueel samenkomen.',
+                details: {
+                    date: 'April 2026',
+                    type: 'After Effects Basics',
+                    collab: 'Zelfstandig (schoolproject)'
+                },
+                insights: {
+                    a: 'Sound of Metal volgt Ruben, een drummer die plotseling zijn gehoor verliest. Die overgang tussen geluid en stilte maakte de film visueel interessant om te vertalen.',
+                    b: 'Ik koos deze film omdat de emotionele shift heel sterk voelbaar is. In de sequence speel ik met timing, pacing en typografie om dat spanningsveld op te bouwen.',
+                    c: 'Het resultaat wordt een korte title sequence waarin motion, contrast en ritme de kern van het verhaal ondersteunen.'
+                },
+                quote: 'Van ruis naar stilte, van chaos naar focus.',
+                captions: {
+                    hero: 'Stijlframe van de direction voor de title sequence.',
+                    a: 'Eerste tests met typografie, timing en compositie in After Effects.',
+                    b: 'Iteratie op ritme en overgangen, afgestemd op de sfeer van de film.',
+                    final: 'Hier komt de uiteindelijke still uit de final sequence.'
+                },
+                images: {
+                    hero: { src: 'images/ae-sound-of-metal.svg', alt: 'Sound of Metal title sequence hero frame' },
+                    gridA: { src: 'images/ae-sound-of-metal.svg', alt: 'Process frame with typography tests' },
+                    gridB: { src: 'images/ae-sound-of-metal.svg', alt: 'Motion and transition iteration frame' },
+                    final: { src: 'images/ae-sound-of-metal.svg', alt: 'Final title sequence frame preview' }
+                },
+                video: {
+                    title: 'Title Sequence Preview',
+                    aboutFilm: 'Over de film: Sound of Metal (2019) gaat over identiteit, verlies en acceptatie wanneer een muzikant geconfronteerd wordt met plots gehoorverlies.',
+                    whyChosen: 'Waarom deze film: ik koos deze film omdat je de spanning tussen geluid en stilte sterk kunt vertalen naar typography, cuts en motion timing.',
+                    caption: '',
+                    src: 'images/title-sequence-placeholder.mp4',
+                    poster: 'images/ae-sound-of-metal.svg'
+                }
+            }
         };
 
-        // This helper function generates placeholder data structure.
-        // Once you add your real projects below, you can remove this function.
-        function makeComingSoonProject(name) {
-            return {
-                // PAGE TITLE & HEADING
-                // titleHtml: The project name shown on the detail page. Use <br /> to break into 2 lines.
-                // Example: 'Rebranding<br />Insurance Co' or 'Mobile App<br />Design System'
-                titleHtml: name.replace(' ', '<br />'),
-
-                // INTRO TEXT (first paragraph under title)
-                // Write a 1-2 sentence summary of the project. This appears right under the title.
-                // Example: 'A complete visual identity redesign for a fintech startup...'
-                intro: 'Project in progress. Hier komt binnenkort een echte case met concept, proces en eindresultaat.',
-
-                // PROJECT METADATA (date, type, collaboration)
-                // date: When did you work on this? E.g., 'March 2025' or 'Q3 2024'
-                // type: What's the project type? E.g., 'Brand Design', 'UI/UX', 'Motion Graphics'
-                // collab: Who did you work with? E.g., 'Self-directed', 'With Team X', 'Client: Company Name'
-                details: {
-                    date: 'Coming soon',        // Change e.g., to 'March 2025'
-                    type: 'In progress',        // Change e.g., to 'Brand Design'
-                    collab: 'TBA'               // Change e.g., to 'Self-directed'
-                },
-
-                // 3 KEY INSIGHTS (section headings + descriptions)
-                // These appear as 3 columns below the hero image.
-                // a = Concept/Direction, b = Process/Methodology, c = Results/Learnings
-                insights: {
-                    a: 'Binnenkort verschijnt hier het concept en de creatieve richting van dit project.',
-                    // Change e.g., to: 'Explored minimalism as design language to reduce visual noise...'
-
-                    b: 'Hier komt uitleg over het proces, iteraties en visuele keuzes.',
-                    // Change e.g., to: 'Started with mood boards, iterated through 5 rounds, refined typography...'
-
-                    c: 'Hier komt het eindresultaat met leerpunten en impact.'
-                    // Change e.g., to: 'Delivered 40-page brand guidelines. Client reported 25% engagement lift...'
-                },
-
-                // PULL QUOTE (large quote on project page)
-                // A memorable line from the project, client feedback, or your reflection.
-                // Example: 'Simplicity is the ultimate sophistication.'
-                quote: 'Coming soon.',
-
-                // IMAGE CAPTIONS (describe each visual in the layout)
-                // These appear below/next to the project images.
-                // hero: Caption for the main / first image
-                // a: Caption for first detail / process image
-                // b: Caption for second detail / process image
-                // final: Caption for the concluding / results image
-                captions: {
-                    hero: 'Preview visual - coming soon.',
-                    // Change e.g., to: 'Final brand identity system applied across digital & print'
-
-                    a: 'Detail 1 - coming soon.',
-                    // Change e.g., to: 'Iteration 3: Typography refinement and grid exploration'
-
-                    b: 'Detail 2 - coming soon.',
-                    // Change e.g., to: 'Color palette & component library built in Figma'
-
-                    final: 'Final visual - coming soon.'
-                    // Change e.g., to: 'Fully implemented design system deployed to production'
-                },
-
-                // PROJECT IMAGES (file paths & alt descriptions)
-                // Replace 'images/project-coming-soon.svg' with your actual image files.
-                // Files should be in the /images folder, e.g., 'images/projectname-hero.jpg'
-                images: {
-                    hero: {
-                        src: 'images/project-coming-soon.svg',  // Change e.g., to 'images/my-project-hero.jpg'
-                        alt: `${name} hero preview`             // Describe the image briefly, e.g., 'Homepage desktop mockup'
-                    },
-                    gridA: {
-                        src: 'images/project-coming-soon.svg',  // Change e.g., to 'images/my-project-process-1.jpg'
-                        alt: `${name} detail preview A`         // Describe the image, e.g., 'Sketches and mood boards'
-                    },
-                    gridB: {
-                        src: 'images/project-coming-soon.svg',  // Change e.g., to 'images/my-project-process-2.jpg'
-                        alt: `${name} detail preview B`         // Describe the image, e.g., 'Final design in Figma'
-                    },
-                    final: {
-                        src: 'images/project-coming-soon.svg',  // Change e.g., to 'images/my-project-final.jpg'
-                        alt: `${name} final preview`            // Describe the image, e.g., 'Design deployed on live site'
-                    }
-                }
-            };
-        }
-
         const selectedId = new URLSearchParams(window.location.search).get('id');
-        const project = projects[selectedId] || projects['sunshift-studio'];
+        const project = projects[selectedId] || projects['project1'];
 
         projectTitle.innerHTML = project.titleHtml;
         if (projectIntro) projectIntro.textContent = project.intro;
@@ -262,7 +431,135 @@
         updateImage(projectGridB, project.images.gridB);
         updateImage(projectFinal, project.images.final);
 
+        if (projectLiveLink) {
+            const hasWebsite = Boolean(project.website && project.website.url);
+            if (hasWebsite) {
+                projectLiveLink.hidden = false;
+                projectLiveLink.href = project.website.url;
+                projectLiveLink.textContent = project.website.label || 'Bekijk website ↗';
+            } else {
+                projectLiveLink.hidden = true;
+                projectLiveLink.removeAttribute('href');
+            }
+        }
+
         const titlePlain = project.titleHtml.replace(/<br\s*\/?\s*>/gi, ' ').replace(/\s+/g, ' ').trim();
+
+        const formatVideoTime = (value) => {
+            if (!Number.isFinite(value) || value < 0) return '00:00';
+            const minutes = Math.floor(value / 60);
+            const seconds = Math.floor(value % 60);
+            return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        };
+
+        if (projectVideoSection && projectVideo && project.video) {
+            projectVideoSection.hidden = false;
+            if (projectVideoTitle) projectVideoTitle.textContent = project.video.title;
+            if (projectVideoAboutFilm) projectVideoAboutFilm.textContent = project.video.aboutFilm;
+            if (projectVideoWhy) projectVideoWhy.textContent = project.video.whyChosen;
+            if (projectVideoCaption) {
+                const hasCaption = Boolean(project.video.caption && project.video.caption.trim());
+                projectVideoCaption.textContent = hasCaption ? project.video.caption : '';
+                projectVideoCaption.hidden = !hasCaption;
+            }
+
+            projectVideo.src = project.video.src;
+            if (project.video.poster) {
+                projectVideo.poster = project.video.poster;
+            } else {
+                projectVideo.removeAttribute('poster');
+            }
+            projectVideo.setAttribute('aria-label', `${titlePlain} video preview`);
+
+            const setActiveControl = (control) => {
+                [videoPlayButton, videoPauseButton].forEach((button) => {
+                    if (!button) return;
+                    const isActive = button === control;
+                    button.classList.toggle('is-active', isActive);
+                    button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+                });
+            };
+
+            const updateVideoTime = () => {
+                if (!videoTimeTarget) return;
+                const current = formatVideoTime(projectVideo.currentTime);
+                const duration = formatVideoTime(projectVideo.duration);
+                videoTimeTarget.textContent = `${current} / ${duration}`;
+            };
+
+            const updateVideoProgress = () => {
+                if (!videoProgress) return;
+                const duration = projectVideo.duration;
+                if (!Number.isFinite(duration) || duration <= 0) {
+                    videoProgress.value = '0';
+                    videoProgress.style.setProperty('--progress', '0%');
+                    return;
+                }
+
+                const percent = (projectVideo.currentTime / duration) * 100;
+                videoProgress.value = String(percent);
+                videoProgress.style.setProperty('--progress', `${percent}%`);
+            };
+
+            updateVideoTime();
+            updateVideoProgress();
+
+            if (videoPlayButton) {
+                videoPlayButton.onclick = () => {
+                    projectVideo.play().catch(() => {
+                        // Playback may be blocked by browser gesture policies.
+                    });
+                    setActiveControl(videoPlayButton);
+                };
+            }
+
+            if (videoPauseButton) {
+                videoPauseButton.onclick = () => {
+                    projectVideo.pause();
+                    setActiveControl(videoPauseButton);
+                };
+            }
+
+            if (videoReplayButton) {
+                videoReplayButton.onclick = () => {
+                    projectVideo.currentTime = 0;
+                    projectVideo.play().catch(() => {
+                        // Playback may be blocked by browser gesture policies.
+                    });
+                    setActiveControl(videoPlayButton || null);
+                    updateVideoProgress();
+                };
+            }
+
+            if (videoProgress) {
+                videoProgress.oninput = () => {
+                    const duration = projectVideo.duration;
+                    if (!Number.isFinite(duration) || duration <= 0) return;
+
+                    const percent = Number(videoProgress.value);
+                    projectVideo.currentTime = (percent / 100) * duration;
+                    videoProgress.style.setProperty('--progress', `${percent}%`);
+                    updateVideoTime();
+                };
+            }
+
+            projectVideo.onloadedmetadata = updateVideoTime;
+            projectVideo.ontimeupdate = () => {
+                updateVideoTime();
+                updateVideoProgress();
+            };
+            projectVideo.onloadedmetadata = () => {
+                updateVideoTime();
+                updateVideoProgress();
+            };
+            projectVideo.onended = () => {
+                setActiveControl(videoPauseButton || null);
+                updateVideoTime();
+                updateVideoProgress();
+            };
+        } else if (projectVideoSection) {
+            projectVideoSection.hidden = true;
+        }
         document.title = `Project - ${titlePlain}`;
         if (pageDescription) {
             pageDescription.setAttribute('content', `${titlePlain} project detail page from the portfolio of Puck Roskamp.`);
