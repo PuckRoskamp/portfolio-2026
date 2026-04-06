@@ -1,4 +1,4 @@
-// Active navigation + dynamic year + lightweight contact behavior
+﻿// Active navigation + dynamic year + lightweight contact behavior
 (() => {
     const bodyPage = document.body.dataset.page;
     const navLinks = document.querySelectorAll('.nav-link');
@@ -134,179 +134,122 @@
         const projectCaptionFinal = document.querySelector('[data-project-caption-final]');
         const pageDescription = document.querySelector('meta[name="description"]');
 
+        // ============================================================================
+        // PROJECT DATA: Replace these Coming Soon placeholders with your real projects.
+        // Each key (e.g., 'sunshift-studio') is the project ID from the work.html links.
+        // ============================================================================
         const projects = {
-            'sunshift-studio': {
-                titleHtml: 'Sunshift<br />Studio',
-                intro: 'Een tweedejaars CMD-project rond ritme, leesrichting en visuele rust in een editorial portfolio-opzet. In dit project onderzocht ik hoe je een portfolio niet alleen mooi kunt maken, maar ook inhoudelijk sterk kunt laten aanvoelen voor stages en creatieve samenwerkingen.',
-                details: { date: 'Maart 2026', type: 'Schoolproject', collab: 'Zelf geïnitieerd' },
-                insights: {
-                    a: 'Sunshift Studio begon als portfolio-concept om werk niet alleen te tonen, maar ook voelbaar te maken in tempo en compositie. Ik wilde dat elke sectie leest als een kleine redactionele spread, zodat de bezoeker stap voor stap door het project wordt meegenomen.',
-                    b: 'Door grote typografie te combineren met strakke witruimte ontstaat er spanning zonder visuele ruis. De hiërarchie is bewust opgebouwd: eerst aandacht trekken, daarna uitleg geven, en tenslotte rust creëren zodat het werk zelf blijft spreken.',
-                    c: 'Het resultaat is rustig, scherp en persoonlijk: beeld en tekst ondersteunen elkaar in plaats van te concurreren. Deze balans maakt de pagina professioneler, maar laat ook duidelijk mijn eigen signatuur als ontwerper zien.'
-                },
-                quote: 'Minder elementen, meer karakter: het grid bepaalt de orde, de typografie bepaalt de toon.',
-                captions: {
-                    hero: 'Hero-frame met veel witruimte zodat typografie het ritme bepaalt.',
-                    a: 'Kleuraccenten sturen focus en bouwen visuele hiërarchie op.',
-                    b: 'Asymmetrische compositie houdt de pagina levend en editorial.',
-                    final: 'Eindbeeld waarin schaal, ritme en consistentie samenkomen.'
-                },
-                images: {
-                    hero: { src: 'images/project-01.svg', alt: 'Sunshift Studio hero visual' },
-                    gridA: { src: 'images/project-02.svg', alt: 'Sunshift Studio detail view' },
-                    gridB: { src: 'images/project-03.svg', alt: 'Sunshift Studio typography composition' },
-                    final: { src: 'images/project-04.svg', alt: 'Sunshift Studio final showcase section' }
-                }
-            },
-            'dune-motion': {
-                titleHtml: 'Dune<br />Motion',
-                intro: 'Een editorial experiment waarin cinematografische beelden worden vertaald naar een heldere, ritmische projectpagina. De uitdaging lag in het combineren van sfeer en structuur: visueel rijk, maar nog steeds duidelijk en prettig om doorheen te scrollen.',
-                details: { date: 'Februari 2026', type: 'Persoonlijk project', collab: 'Geen externe partner' },
-                insights: {
-                    a: 'Dune Motion draait om sfeer: warme kleuren en sequenties zorgen voor filmisch momentum. In plaats van losse beelden naast elkaar te plaatsen, heb ik bewust gekozen voor een opbouw waarbij elk beeld het volgende voorbereidt.',
-                    b: 'De layout blijft bewust minimalistisch zodat elk beeld meer gewicht krijgt. Korte tekstblokken functioneren hier als ankerpunten: ze geven context, maar laten voldoende ruimte over voor emotie en visuele impact.',
-                    c: 'De serie voelt nu atmosferisch maar nog steeds gecontroleerd en leesbaar. Daardoor blijft het project niet hangen in alleen “mooi”, maar communiceert het ook een duidelijke ontwerpintentie.'
-                },
-                quote: 'Cinematisch hoeft niet druk te zijn; ritme ontstaat juist door weglaten.',
-                captions: {
-                    hero: 'Openingsbeeld zet direct de toon met warmte en contrast.',
-                    a: 'Detailshot laat de overgang tussen beeldblokken zien.',
-                    b: 'Typografie blijft terughoudend zodat beeld het verhaal draagt.',
-                    final: 'Laatste frame sluit af met balans tussen spanning en rust.'
-                },
-                images: {
-                    hero: { src: 'images/project-02.svg', alt: 'Dune Motion hero visual' },
-                    gridA: { src: 'images/project-03.svg', alt: 'Dune Motion visual detail' },
-                    gridB: { src: 'images/project-05.svg', alt: 'Dune Motion layout detail' },
-                    final: { src: 'images/project-06.svg', alt: 'Dune Motion final showcase section' }
-                }
-            },
-            'atelier-north': {
-                titleHtml: 'Atelier<br />North',
-                intro: 'Een high-contrast merkconcept met focus op geometrie, grid-discipline en krachtige typografische hiërarchie. Dit project gaat over precisie: hoe je met minimale middelen toch een sterke, herkenbare en eigentijdse merktaal kunt neerzetten.',
-                details: { date: 'Januari 2026', type: 'Schoolproject', collab: 'Blokproject CMD' },
-                insights: {
-                    a: 'Atelier North onderzoekt hoe ver contrast kan gaan zonder leesbaarheid te verliezen. Ik heb veel getest met zwart-witverhoudingen en typografische schaal om spanning op te bouwen zonder dat het visueel zwaar wordt.',
-                    b: 'Strakke gridlijnen en schaalwissels zorgen voor een gecontroleerde, moderne uitstraling. Die systematische opbouw helpt om verschillende contenttypen — van beeld tot copy — consistent binnen één taal te houden.',
-                    c: 'Zo ontstaat een identiteit die tegelijk systematisch en uitgesproken aanvoelt. Voor mij was dit project vooral waardevol omdat het laat zien dat strenge structuur ook veel creatieve vrijheid kan opleveren.'
-                },
-                quote: 'Precisie is niet saai: het maakt ruimte voor krachtige keuzes.',
-                captions: {
-                    hero: 'Hero met geometrische spanning en sterke hiërarchie.',
-                    a: 'Detail toont hoe witruimte de compositie laat ademen.',
-                    b: 'Grid en type werken als één visueel systeem.',
-                    final: 'Final frame bevestigt de merktoon in een clean geheel.'
-                },
-                images: {
-                    hero: { src: 'images/project-03.svg', alt: 'Atelier North hero visual' },
-                    gridA: { src: 'images/project-01.svg', alt: 'Atelier North detail view' },
-                    gridB: { src: 'images/project-06.svg', alt: 'Atelier North composition detail' },
-                    final: { src: 'images/project-02.svg', alt: 'Atelier North final showcase section' }
-                }
-            },
-            'noir-form': {
-                titleHtml: 'Noir<br />Form',
-                intro: 'Monochroom concept dat architecturale vormen, negatieve ruimte en rustige pacing centraal zet. De kern van dit project is reductie: minder kleur, minder afleiding, en daardoor meer focus op compositie, materiaal en ritme.',
-                details: { date: 'December 2025', type: 'Persoonlijk project', collab: 'Zelf geïnitieerd' },
-                insights: {
-                    a: 'Noir Form startte vanuit één vraag: hoe maak je spanning met bijna geen kleur? Door te werken met contrast in vorm en schaal kon ik die spanning opbouwen zonder afhankelijk te zijn van opvallende kleuraccenten.',
-                    b: 'Door sectionering en ritmische overgangen blijft het minimalistisch maar niet leeg. Elke overgang is bewust geplaatst om de lezer door het project te leiden, bijna als een visuele ademhaling tussen de beelden.',
-                    c: 'Het eindresultaat voelt volwassen, stil en doelbewust. Juist door die ingetogen aanpak krijgt de pagina meer karakter en een duidelijkere editoriale identiteit.'
-                },
-                quote: 'Beperking in kleur opent ruimte voor vorm, contrast en nuance.',
-                captions: {
-                    hero: 'Monochrome hero legt focus op vorm en textuur.',
-                    a: 'Close-up laat de rol van negatieve ruimte zien.',
-                    b: 'Beeldblokken bouwen spanning op zonder extra decoratie.',
-                    final: 'Final frame houdt het stil, strak en overtuigend.'
-                },
-                images: {
-                    hero: { src: 'images/project-04.svg', alt: 'Noir Form hero visual' },
-                    gridA: { src: 'images/project-01.svg', alt: 'Noir Form detail view' },
-                    gridB: { src: 'images/project-05.svg', alt: 'Noir Form layout detail' },
-                    final: { src: 'images/project-03.svg', alt: 'Noir Form final showcase section' }
-                }
-            },
-            'static-echo': {
-                titleHtml: 'Static<br />Echo',
-                intro: 'Digitaal concept met donkere contrasten, interfacespanning en duidelijke visuele hiërarchie. In dit project wilde ik een energieke digitale sfeer neerzetten zonder de overzichtelijkheid van een sterke editorial layout te verliezen.',
-                details: { date: 'November 2025', type: 'Blokproject', collab: 'Interne schoolopdracht' },
-                insights: {
-                    a: 'Static Echo onderzoekt hoe een donkere stijl toch editorial en leesbaar kan blijven. Ik heb contrast niet alleen in kleur gebruikt, maar ook in ritme: afwisselend dense en rustige zones in de layout.',
-                    b: 'Hoge contrasten worden geankerd met consistente tekstblokken en spacing. Daardoor blijft de pagina stabiel, ook wanneer de visuals expressiever en drukker worden.',
-                    c: 'Zo ontstaat een energiek maar gecontroleerd visueel systeem. Het project laat zien dat een uitgesproken stijl en functionele helderheid prima kunnen samengaan.'
-                },
-                quote: 'Bold visuals werken pas echt als de structuur kalm blijft.',
-                captions: {
-                    hero: 'Hero gebruikt contrast om direct focus te pakken.',
-                    a: 'Detail toont de balans tussen interface en editorial layout.',
-                    b: 'Type-ankers zorgen voor rust in een expressieve stijl.',
-                    final: 'Final frame bundelt energie en consistentie.'
-                },
-                images: {
-                    hero: { src: 'images/project-05.svg', alt: 'Static Echo hero visual' },
-                    gridA: { src: 'images/project-06.svg', alt: 'Static Echo detail view' },
-                    gridB: { src: 'images/project-02.svg', alt: 'Static Echo composition detail' },
-                    final: { src: 'images/project-04.svg', alt: 'Static Echo final showcase section' }
-                }
-            },
-            'nexa-objects': {
-                titleHtml: 'Nexa<br />Objects',
-                intro: 'Productgericht concept waarin spacing, vorm en typografie samen een helder visueel verhaal opbouwen. Het doel was om objecten niet als losse renders te tonen, maar als onderdeel van een samenhangende, redactionele presentatie.',
-                details: { date: 'Oktober 2025', type: 'Schoolproject', collab: 'Samenwerking met medestudenten' },
-                insights: {
-                    a: 'Nexa Objects presenteert productbeelden op een rustige, bijna museale manier. Door grote marges en een heldere beeldvolgorde krijgt elk object visueel gewicht en een eigen moment.',
-                    b: 'Korte tekstblokken geven context zonder de visuele flow te onderbreken. De copy ondersteunt vooral materiaalkeuzes, vormtaal en gebruiksscenario’s, in plaats van alleen algemene beschrijving.',
-                    c: 'Daardoor wordt het niet alleen mooi, maar ook inhoudelijk overtuigend. Je ziet niet alleen wat het eindresultaat is, maar ook waarom bepaalde ontwerpkeuzes gemaakt zijn.'
-                },
-                quote: 'Een sterk case-study ritme laat keuzes zien, niet alleen eindbeelden.',
-                captions: {
-                    hero: 'Hero combineert productfocus met editorial pacing.',
-                    a: 'Detail benadrukt materiaal, vorm en lichtval.',
-                    b: 'Compositie laat zien hoe type en beeld elkaar versterken.',
-                    final: 'Final frame sluit af met heldere visuele continuïteit.'
-                },
-                images: {
-                    hero: { src: 'images/project-06.svg', alt: 'Nexa Objects hero visual' },
-                    gridA: { src: 'images/project-05.svg', alt: 'Nexa Objects detail view' },
-                    gridB: { src: 'images/project-03.svg', alt: 'Nexa Objects composition detail' },
-                    final: { src: 'images/project-01.svg', alt: 'Nexa Objects final showcase section' }
-                }
-            }
+            'sunshift-studio': makeComingSoonProject('Coming Soon 01'),
+            'dune-motion': makeComingSoonProject('Coming Soon 02'),
+            'atelier-north': makeComingSoonProject('Coming Soon 03'),
+            'noir-form': makeComingSoonProject('Coming Soon 04'),
+            'static-echo': makeComingSoonProject('Coming Soon 05'),
+            'nexa-objects': makeComingSoonProject('Coming Soon 06')
         };
+
+        // This helper function generates placeholder data structure.
+        // Once you add your real projects below, you can remove this function.
+        function makeComingSoonProject(name) {
+            return {
+                // PAGE TITLE & HEADING
+                // titleHtml: The project name shown on the detail page. Use <br /> to break into 2 lines.
+                // Example: 'Rebranding<br />Insurance Co' or 'Mobile App<br />Design System'
+                titleHtml: name.replace(' ', '<br />'),
+
+                // INTRO TEXT (first paragraph under title)
+                // Write a 1-2 sentence summary of the project. This appears right under the title.
+                // Example: 'A complete visual identity redesign for a fintech startup...'
+                intro: 'Project in progress. Hier komt binnenkort een echte case met concept, proces en eindresultaat.',
+
+                // PROJECT METADATA (date, type, collaboration)
+                // date: When did you work on this? E.g., 'March 2025' or 'Q3 2024'
+                // type: What's the project type? E.g., 'Brand Design', 'UI/UX', 'Motion Graphics'
+                // collab: Who did you work with? E.g., 'Self-directed', 'With Team X', 'Client: Company Name'
+                details: {
+                    date: 'Coming soon',        // Change e.g., to 'March 2025'
+                    type: 'In progress',        // Change e.g., to 'Brand Design'
+                    collab: 'TBA'               // Change e.g., to 'Self-directed'
+                },
+
+                // 3 KEY INSIGHTS (section headings + descriptions)
+                // These appear as 3 columns below the hero image.
+                // a = Concept/Direction, b = Process/Methodology, c = Results/Learnings
+                insights: {
+                    a: 'Binnenkort verschijnt hier het concept en de creatieve richting van dit project.',
+                    // Change e.g., to: 'Explored minimalism as design language to reduce visual noise...'
+
+                    b: 'Hier komt uitleg over het proces, iteraties en visuele keuzes.',
+                    // Change e.g., to: 'Started with mood boards, iterated through 5 rounds, refined typography...'
+
+                    c: 'Hier komt het eindresultaat met leerpunten en impact.'
+                    // Change e.g., to: 'Delivered 40-page brand guidelines. Client reported 25% engagement lift...'
+                },
+
+                // PULL QUOTE (large quote on project page)
+                // A memorable line from the project, client feedback, or your reflection.
+                // Example: 'Simplicity is the ultimate sophistication.'
+                quote: 'Coming soon.',
+
+                // IMAGE CAPTIONS (describe each visual in the layout)
+                // These appear below/next to the project images.
+                // hero: Caption for the main / first image
+                // a: Caption for first detail / process image
+                // b: Caption for second detail / process image
+                // final: Caption for the concluding / results image
+                captions: {
+                    hero: 'Preview visual - coming soon.',
+                    // Change e.g., to: 'Final brand identity system applied across digital & print'
+
+                    a: 'Detail 1 - coming soon.',
+                    // Change e.g., to: 'Iteration 3: Typography refinement and grid exploration'
+
+                    b: 'Detail 2 - coming soon.',
+                    // Change e.g., to: 'Color palette & component library built in Figma'
+
+                    final: 'Final visual - coming soon.'
+                    // Change e.g., to: 'Fully implemented design system deployed to production'
+                },
+
+                // PROJECT IMAGES (file paths & alt descriptions)
+                // Replace 'images/project-coming-soon.svg' with your actual image files.
+                // Files should be in the /images folder, e.g., 'images/projectname-hero.jpg'
+                images: {
+                    hero: {
+                        src: 'images/project-coming-soon.svg',  // Change e.g., to 'images/my-project-hero.jpg'
+                        alt: `${name} hero preview`             // Describe the image briefly, e.g., 'Homepage desktop mockup'
+                    },
+                    gridA: {
+                        src: 'images/project-coming-soon.svg',  // Change e.g., to 'images/my-project-process-1.jpg'
+                        alt: `${name} detail preview A`         // Describe the image, e.g., 'Sketches and mood boards'
+                    },
+                    gridB: {
+                        src: 'images/project-coming-soon.svg',  // Change e.g., to 'images/my-project-process-2.jpg'
+                        alt: `${name} detail preview B`         // Describe the image, e.g., 'Final design in Figma'
+                    },
+                    final: {
+                        src: 'images/project-coming-soon.svg',  // Change e.g., to 'images/my-project-final.jpg'
+                        alt: `${name} final preview`            // Describe the image, e.g., 'Design deployed on live site'
+                    }
+                }
+            };
+        }
 
         const selectedId = new URLSearchParams(window.location.search).get('id');
         const project = projects[selectedId] || projects['sunshift-studio'];
 
-        const loremContent = {
-            titleHtml: 'Lorem<br />Ipsum',
-            intro: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-            date: 'Lorem ipsum',
-            type: 'Dolor sit',
-            collab: 'Amet consectetur',
-            insightA: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-            insightB: 'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.',
-            insightC: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet consectetur.',
-            quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            captionHero: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            captionA: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-            captionB: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
-            captionFinal: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.'
-        };
-
-        projectTitle.innerHTML = loremContent.titleHtml;
-        if (projectIntro) projectIntro.textContent = loremContent.intro;
-        if (projectDate) projectDate.textContent = loremContent.date;
-        if (projectType) projectType.textContent = loremContent.type;
-        if (projectCollab) projectCollab.textContent = loremContent.collab;
-        if (projectInsightA) projectInsightA.textContent = loremContent.insightA;
-        if (projectInsightB) projectInsightB.textContent = loremContent.insightB;
-        if (projectInsightC) projectInsightC.textContent = loremContent.insightC;
-        if (projectQuote) projectQuote.textContent = `“${loremContent.quote}”`;
-        if (projectCaptionHero) projectCaptionHero.textContent = loremContent.captionHero;
-        if (projectCaptionA) projectCaptionA.textContent = loremContent.captionA;
-        if (projectCaptionB) projectCaptionB.textContent = loremContent.captionB;
-        if (projectCaptionFinal) projectCaptionFinal.textContent = loremContent.captionFinal;
+        projectTitle.innerHTML = project.titleHtml;
+        if (projectIntro) projectIntro.textContent = project.intro;
+        if (projectDate) projectDate.textContent = project.details.date;
+        if (projectType) projectType.textContent = project.details.type;
+        if (projectCollab) projectCollab.textContent = project.details.collab;
+        if (projectInsightA) projectInsightA.textContent = project.insights.a;
+        if (projectInsightB) projectInsightB.textContent = project.insights.b;
+        if (projectInsightC) projectInsightC.textContent = project.insights.c;
+        if (projectQuote) projectQuote.textContent = `"${project.quote}"`;
+        if (projectCaptionHero) projectCaptionHero.textContent = project.captions.hero;
+        if (projectCaptionA) projectCaptionA.textContent = project.captions.a;
+        if (projectCaptionB) projectCaptionB.textContent = project.captions.b;
+        if (projectCaptionFinal) projectCaptionFinal.textContent = project.captions.final;
 
         const updateImage = (element, data) => {
             if (!element || !data) return;
@@ -319,10 +262,11 @@
         updateImage(projectGridB, project.images.gridB);
         updateImage(projectFinal, project.images.final);
 
-        const titlePlain = loremContent.titleHtml.replace(/<br\s*\/?\s*>/gi, ' ').replace(/\s+/g, ' ').trim();
-        document.title = `Project — ${titlePlain}`;
+        const titlePlain = project.titleHtml.replace(/<br\s*\/?\s*>/gi, ' ').replace(/\s+/g, ' ').trim();
+        document.title = `Project - ${titlePlain}`;
         if (pageDescription) {
             pageDescription.setAttribute('content', `${titlePlain} project detail page from the portfolio of Puck Roskamp.`);
         }
     }
 })();
+
