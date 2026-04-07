@@ -153,7 +153,8 @@
         const projectInsightB = document.querySelector('[data-project-insight-b]');
         const projectInsightC = document.querySelector('[data-project-insight-c]');
         const projectQuote = document.querySelector('[data-project-quote]');
-        const projectHero = document.querySelector('[data-project-hero]');
+        const projectHeroImage = document.querySelector('[data-project-hero-image]');
+        const projectHeroEmbed = document.querySelector('[data-project-hero-embed]');
         const projectGridA = document.querySelector('[data-project-grid-a]');
         const projectGridB = document.querySelector('[data-project-grid-b]');
         const projectFinal = document.querySelector('[data-project-final]');
@@ -161,6 +162,12 @@
         const projectCaptionA = document.querySelector('[data-project-caption-a]');
         const projectCaptionB = document.querySelector('[data-project-caption-b]');
         const projectCaptionFinal = document.querySelector('[data-project-caption-final]');
+        const projectFlow = document.querySelector('[data-project-flow]');
+        const projectFlowVisuals = Array.from(document.querySelectorAll('.project-flow .project-visual'));
+        const projectRoleSection = document.querySelector('[data-project-role-section]');
+        const projectRoleLabel = document.querySelector('[data-project-role-label]');
+        const projectRoleTitle = document.querySelector('[data-project-role-title]');
+        const projectRoleText = document.querySelector('[data-project-role-text]');
         const projectLiveLink = document.querySelector('[data-project-live-link]');
         const projectVideoSection = document.querySelector('[data-project-video-section]');
         const projectVideoTitle = document.querySelector('[data-project-video-title]');
@@ -185,7 +192,7 @@
         const projects = {
             // Card 01 -> project.html?id=project1
             'project1': {
-                titleHtml: 'Coming Soon<br />01',
+                titleHtml: 'Squeaky Clean<br />Typeface',
                 intro: 'Vervang dit met 1-2 zinnen over het projectdoel en de context.',
                 details: {
                     date: 'Coming soon',
@@ -251,26 +258,30 @@
                     collab: 'Teamproject met medestudenten binnen CMD'
                 },
                 insights: {
-                    a: 'Concept: beschrijf hier de creatieve richting en het centrale idee.',
-                    b: 'Proces: leg hier iteraties, tools en keuzes uit.',
-                    c: 'Resultaat: benoem hier het eindresultaat en wat je hebt geleerd.'
+                    a: 'Het concept draaide om leren door te doen. Door middel van interactieve opdrachten, visuele elementen en een speelse aanpak maakten we coderen begrijpelijk en leuk voor een jonge doelgroep zonder technische voorkennis.',
+                    b: 'Tijdens het project werkten we in teamverband aan zowel de inhoud als de vormgeving van de workshop. Mijn focus lag op de branding van Spark, waarbij ik onder andere mascottes ontwierp en een brandboard ontwikkelde om een consistente visuele identiteit neer te zetten. Daarnaast documenteerde ik de workshop door foto’s en video’s te maken, inclusief interviews en promotiemateriaal.',
+                    c: 'Het eindresultaat is een interactieve workshop waarin leerlingen actief kennismaken met coderen in een laagdrempelige en leuke setting. De visuele stijl en branding zorgen voor een samenhangende ervaring, terwijl de vastgelegde foto- en videomaterialen zijn gebruikt voor promotie en documentatie van het project.'
                 },
-                quote: 'Vervang deze quote met een kernzin van het project.',
+                quote: 'Leren coderen begint met nieuwsgierigheid en plezier.',
                 captions: {
-                    hero: 'Caption hero image',
-                    a: 'Caption image A',
-                    b: 'Caption image B',
-                    final: 'Caption final image'
+                    hero: 'Website die de workshop en bijbehorende beleving visueel en inhoudelijk vastlegt.',
+                    a: 'Kleurenpalet en visuele stijl vastgelegd in het brandboard.',
+                    b: 'Leerling aan het werk met p5.js tijdens de interactieve workshop.',
+                    final: 'Ontwikkelde mascottes als onderdeel van de visuele identiteit van Spark.'
                 },
                 images: {
                     hero: { src: 'images/project3-spark-workshops.svg', alt: 'Project 03 hero image' },
-                    gridA: { src: 'images/project3-spark-workshops.svg', alt: 'Project 03 process image A' },
-                    gridB: { src: 'images/project3-spark-workshops.svg', alt: 'Project 03 process image B' },
-                    final: { src: 'images/project3-spark-workshops.svg', alt: 'Project 03 final image' }
+                    gridA: { src: 'images/spark-color.svg', alt: 'Project 03 process image A' },
+                    gridB: { src: 'images/closeup-jongen.jpg', alt: 'Project 03 process image B' },
+                    final: { src: 'images/spark-mascottes.svg', alt: 'Project 03 final image' }
                 },
                 website: {
                     label: 'Bekijk website ↗',
                     url: 'https://sparkworkshop.nl/'
+                },
+                embed: {
+                    url: 'https://sparkworkshop.nl/',
+                    title: 'Spark workshop live preview'
                 }
             },
 
@@ -313,11 +324,11 @@
                     collab: 'Centraal Bureau voor de Statistiek (CBS)'
                 },
                 insights: {
-                    a: 'Concept: beschrijf hier de creatieve richting en het centrale idee.',
-                    b: 'Proces: leg hier iteraties, tools en keuzes uit.',
-                    c: 'Resultaat: benoem hier het eindresultaat en wat je hebt geleerd.'
+                    a: 'Het concept draaide om het vertalen van abstracte cijfers naar een visueel en verhalend geheel, waarbij de gebruiker stap voor stap door de data wordt geleid.',
+                    b: 'Tijdens het proces analyseerden we de dataset, selecteerden we relevante inzichten en bepaalden we hoe deze het best verteld konden worden via interactie en visuele elementen. Hierbij stond de balans tussen inhoud, vormgeving en gebruikservaring centraal.',
+                    c: 'Het eindresultaat is een interactieve story waarin data, visuals en tekst samenkomen tot een helder en boeiend verhaal. Door middel van scroll-based interactie en visuele hiërarchie wordt de gebruiker meegenomen in de inzichten uit de data.'
                 },
-                quote: 'Vervang deze quote met een kernzin van het project.',
+                quote: 'Data krijgt betekenis wanneer het wordt verteld als een verhaal.',
                 captions: {
                     hero: 'Caption hero image',
                     a: 'Caption image A',
@@ -333,7 +344,17 @@
                 website: {
                     label: 'Bekijk website ↗',
                     url: 'https://jelger1.github.io/story/'
-                }
+                },
+                embed: {
+                    url: 'https://jelger1.github.io/story/',
+                    title: 'CBS Data story live preview'
+                },
+                role: {
+                    label: 'Data Storytelling & Visual Design',
+                    title: 'Mijn rol in dit project',
+                    text: 'Binnen dit teamproject lag mijn focus op visual design en storytelling. Ik vertaalde data naar een duidelijke visuele structuur, werkte aan de stijl en hiërarchie van de pagina, en zorgde dat de gebruikersflow logisch bleef van eerste inzicht tot eindconclusie.'
+                },
+                hideVisuals: true
             },
 
             // Card 06 -> project.html?id=project6
@@ -426,10 +447,54 @@
             element.alt = data.alt;
         };
 
-        updateImage(projectHero, project.images.hero);
+        updateImage(projectHeroImage, project.images.hero);
         updateImage(projectGridA, project.images.gridA);
         updateImage(projectGridB, project.images.gridB);
         updateImage(projectFinal, project.images.final);
+
+        const titlePlain = project.titleHtml.replace(/<br\s*\/?\s*>/gi, ' ').replace(/\s+/g, ' ').trim();
+
+        if (projectFlow) {
+            const hideVisuals = Boolean(project.hideVisuals);
+            projectFlow.classList.toggle('is-text-only', hideVisuals);
+            projectFlowVisuals.forEach((visual) => {
+                visual.hidden = hideVisuals;
+            });
+
+            if (projectCaptionHero) {
+                projectCaptionHero.hidden = hideVisuals;
+            }
+        }
+
+        if (projectRoleSection && projectRoleTitle && projectRoleText) {
+            const hasRole = Boolean(project.role && project.role.text);
+            projectRoleSection.hidden = !hasRole;
+            if (hasRole) {
+                if (projectRoleLabel) {
+                    projectRoleLabel.textContent = project.role.label || 'ROL';
+                }
+                projectRoleTitle.textContent = project.role.title || 'Mijn rol in dit project';
+                projectRoleText.textContent = project.role.text;
+            }
+        }
+
+        if (projectHeroEmbed && projectHeroImage) {
+            const hasEmbed = Boolean(project.embed && project.embed.url);
+            if (hasEmbed) {
+                projectHeroImage.hidden = true;
+                projectHeroImage.style.display = 'none';
+                projectHeroEmbed.hidden = false;
+                projectHeroEmbed.style.display = 'block';
+                projectHeroEmbed.src = project.embed.url;
+                projectHeroEmbed.title = project.embed.title || titlePlain;
+            } else {
+                projectHeroImage.hidden = false;
+                projectHeroImage.style.display = 'block';
+                projectHeroEmbed.hidden = true;
+                projectHeroEmbed.style.display = 'none';
+                projectHeroEmbed.removeAttribute('src');
+            }
+        }
 
         if (projectLiveLink) {
             const hasWebsite = Boolean(project.website && project.website.url);
@@ -442,8 +507,6 @@
                 projectLiveLink.removeAttribute('href');
             }
         }
-
-        const titlePlain = project.titleHtml.replace(/<br\s*\/?\s*>/gi, ' ').replace(/\s+/g, ' ').trim();
 
         const formatVideoTime = (value) => {
             if (!Number.isFinite(value) || value < 0) return '00:00';

@@ -752,6 +752,14 @@ button {
     object-fit: cover;
 }
 
+.project-full iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    display: block;
+    background: #fff;
+}
+
 .project-full figcaption {
     margin: 0;
     padding: 12px 2px 0;
@@ -833,6 +841,46 @@ button {
     object-fit: cover;
     background: #111;
     display: block;
+}
+
+.project-role-section {
+    padding-top: 0;
+}
+
+.project-role-content {
+    display: grid;
+    gap: 12px;
+    max-width: 760px;
+    margin-inline: auto;
+    padding-top: 4px;
+}
+
+.project-role-label {
+    margin: 0;
+    width: fit-content;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.project-role-content p {
+    margin: 0;
+    max-width: 72ch;
+}
+
+.project-flow.is-text-only .project-flow-row {
+    grid-template-columns: 1fr;
+}
+
+.project-flow.is-text-only {
+    max-width: 760px;
+    margin-inline: auto;
+}
+
+.project-flow.is-text-only .project-copy p {
+    max-width: 72ch;
 }
 
 .project-video-controls {
