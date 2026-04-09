@@ -870,6 +870,40 @@ button {
     max-width: 72ch;
 }
 
+.project-posters-section {
+    padding-top: 0;
+}
+
+.project-posters-layout {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(20px, 3vw, 34px);
+    max-width: 980px;
+    margin-inline: auto;
+}
+
+.project-poster-card {
+    margin: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: color-mix(in srgb, var(--bg) 95%, #fff 5%);
+}
+
+.project-poster-card img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+}
+
+.project-poster-card figcaption {
+    margin: 0;
+    padding: 10px 14px 12px;
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
 .project-flow.is-text-only .project-flow-row {
     grid-template-columns: 1fr;
 }
@@ -1349,6 +1383,10 @@ button {
 
     .project-flow {
         gap: 46px;
+    }
+
+    .project-posters-layout {
+        gap: 14px;
     }
 
     .project-flow-row .project-visual {

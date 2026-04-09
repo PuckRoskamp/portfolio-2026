@@ -153,8 +153,8 @@
         const projectInsightB = document.querySelector('[data-project-insight-b]');
         const projectInsightC = document.querySelector('[data-project-insight-c]');
         const projectQuote = document.querySelector('[data-project-quote]');
-        const projectHeroImage = document.querySelector('[data-project-hero-image]');
-        const projectHeroEmbed = document.querySelector('[data-project-hero-embed]');
+        const projectHeroImage = document.querySelector('[data-project-hero-image], [data-project-hero]');
+        let projectHeroEmbed = document.querySelector('[data-project-hero-embed]');
         const projectGridA = document.querySelector('[data-project-grid-a]');
         const projectGridB = document.querySelector('[data-project-grid-b]');
         const projectFinal = document.querySelector('[data-project-final]');
@@ -162,6 +162,8 @@
         const projectCaptionA = document.querySelector('[data-project-caption-a]');
         const projectCaptionB = document.querySelector('[data-project-caption-b]');
         const projectCaptionFinal = document.querySelector('[data-project-caption-final]');
+        const projectHeroFigure = document.querySelector('.project-hero-image');
+        const projectFlowSection = document.querySelector('[data-project-flow-section]');
         const projectFlow = document.querySelector('[data-project-flow]');
         const projectFlowVisuals = Array.from(document.querySelectorAll('.project-flow .project-visual'));
         const projectRoleSection = document.querySelector('[data-project-role-section]');
@@ -180,6 +182,8 @@
         const videoReplayButton = document.querySelector('[data-video-replay]');
         const videoTimeTarget = document.querySelector('[data-video-time]');
         const videoProgress = document.querySelector('[data-video-progress]');
+        const projectPostersSection = document.querySelector('[data-project-posters-section]');
+        const projectPostersGrid = document.querySelector('[data-project-posters-grid]');
         const pageDescription = document.querySelector('meta[name="description"]');
 
         // ============================================================================
@@ -359,12 +363,12 @@
 
             // Card 06 -> project.html?id=project6
             'project6': {
-                titleHtml: 'Coming Soon<br />06',
-                intro: 'Vervang dit met 1-2 zinnen over het projectdoel en de context.',
+                titleHtml: 'Poster Archive<br />Collection',
+                intro: 'Een verzameling van posters die ik in verschillende projecten en periodes heb ontworpen.',
                 details: {
-                    date: 'Coming soon',
-                    type: 'In progress',
-                    collab: 'TBA'
+                    date: '2024 - 2026',
+                    type: 'Poster collectie',
+                    collab: 'Zelfstandige experimenten'
                 },
                 insights: {
                     a: 'Concept: beschrijf hier de creatieve richting en het centrale idee.',
@@ -383,7 +387,18 @@
                     gridA: { src: 'images/project-coming-soon.svg', alt: 'Project 06 process image A' },
                     gridB: { src: 'images/project-coming-soon.svg', alt: 'Project 06 process image B' },
                     final: { src: 'images/project-coming-soon.svg', alt: 'Project 06 final image' }
-                }
+                },
+                posterGrid: [
+                    { src: 'images/project-coming-soon.svg', alt: 'Poster 1', caption: 'Poster 01' },
+                    { src: 'images/project-coming-soon.svg', alt: 'Poster 2', caption: 'Poster 02' },
+                    { src: 'images/project-coming-soon.svg', alt: 'Poster 3', caption: 'Poster 03' },
+                    { src: 'images/project-coming-soon.svg', alt: 'Poster 4', caption: 'Poster 04' },
+                    { src: 'images/project-coming-soon.svg', alt: 'Poster 5', caption: 'Poster 05' },
+                    { src: 'images/project-coming-soon.svg', alt: 'Poster 6', caption: 'Poster 06' },
+                    { src: 'images/project-coming-soon.svg', alt: 'Poster 7', caption: 'Poster 07' },
+                    { src: 'images/project-coming-soon.svg', alt: 'Poster 8', caption: 'Poster 08' }
+                ],
+                hideHeroVisual: true
             },
 
             // After Effects project with optional video section
@@ -420,7 +435,9 @@
                     caption: '',
                     src: 'images/title-sequence-placeholder.mp4',
                     poster: 'images/ae-sound-of-metal.svg'
-                }
+                },
+                hideHeroVisual: true,
+                hideFlowSection: true
             }
         };
 
@@ -454,6 +471,15 @@
 
         const titlePlain = project.titleHtml.replace(/<br\s*\/?\s*>/gi, ' ').replace(/\s+/g, ' ').trim();
 
+        if (projectHeroFigure) {
+            projectHeroFigure.hidden = Boolean(project.hideHeroVisual);
+        }
+
+        if (projectFlowSection) {
+            const hasPosterGrid = Array.isArray(project.posterGrid) && project.posterGrid.length > 0;
+            projectFlowSection.hidden = Boolean(project.hideFlowSection || hasPosterGrid);
+        }
+
         if (projectFlow) {
             const hideVisuals = Boolean(project.hideVisuals);
             projectFlow.classList.toggle('is-text-only', hideVisuals);
@@ -478,9 +504,40 @@
             }
         }
 
-        if (projectHeroEmbed && projectHeroImage) {
+        if (projectPostersSection && projectPostersGrid) {
+            const hasPosterGrid = Array.isArray(project.posterGrid) && project.posterGrid.length > 0;
+            projectPostersSection.hidden = !hasPosterGrid;
+
+            if (hasPosterGrid) {
+                projectPostersGrid.innerHTML = '';
+
+                project.posterGrid.slice(0, 8).forEach((poster, index) => {
+                    const figure = document.createElement('figure');
+                    figure.className = 'project-poster-card';
+
+                    const image = document.createElement('img');
+                    image.src = poster.src;
+                    image.alt = poster.alt || `Poster ${index + 1}`;
+
+                    const caption = document.createElement('figcaption');
+                    caption.textContent = poster.caption || `Poster ${String(index + 1).padStart(2, '0')}`;
+
+                    figure.appendChild(image);
+                    figure.appendChild(caption);
+                    projectPostersGrid.appendChild(figure);
+                });
+            }
+        }
+
+        if (projectHeroImage) {
             const hasEmbed = Boolean(project.embed && project.embed.url);
             if (hasEmbed) {
+                if (!projectHeroEmbed) {
+                    projectHeroEmbed = document.createElement('iframe');
+                    projectHeroEmbed.setAttribute('data-project-hero-embed', '');
+                    projectHeroEmbed.title = 'Live project preview';
+                    projectHeroImage.insertAdjacentElement('afterend', projectHeroEmbed);
+                }
                 projectHeroImage.hidden = true;
                 projectHeroImage.style.display = 'none';
                 projectHeroEmbed.hidden = false;
@@ -490,9 +547,11 @@
             } else {
                 projectHeroImage.hidden = false;
                 projectHeroImage.style.display = 'block';
-                projectHeroEmbed.hidden = true;
-                projectHeroEmbed.style.display = 'none';
-                projectHeroEmbed.removeAttribute('src');
+                if (projectHeroEmbed) {
+                    projectHeroEmbed.hidden = true;
+                    projectHeroEmbed.style.display = 'none';
+                    projectHeroEmbed.removeAttribute('src');
+                }
             }
         }
 
