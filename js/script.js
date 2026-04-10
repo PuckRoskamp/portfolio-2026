@@ -389,14 +389,14 @@
                     final: { src: 'images/project-coming-soon.svg', alt: 'Project 06 final image' }
                 },
                 posterGrid: [
-                    { src: 'images/project-coming-soon.svg', alt: 'Poster 1', caption: 'Poster 01' },
-                    { src: 'images/project-coming-soon.svg', alt: 'Poster 2', caption: 'Poster 02' },
-                    { src: 'images/project-coming-soon.svg', alt: 'Poster 3', caption: 'Poster 03' },
-                    { src: 'images/project-coming-soon.svg', alt: 'Poster 4', caption: 'Poster 04' },
-                    { src: 'images/project-coming-soon.svg', alt: 'Poster 5', caption: 'Poster 05' },
-                    { src: 'images/project-coming-soon.svg', alt: 'Poster 6', caption: 'Poster 06' },
-                    { src: 'images/project-coming-soon.svg', alt: 'Poster 7', caption: 'Poster 07' },
-                    { src: 'images/project-coming-soon.svg', alt: 'Poster 8', caption: 'Poster 08' }
+                    { src: 'images/DISFIGURED GRACE.png', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 1', caption: 'Disfigured Grace' },
+                    { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 2', caption: 'Poster 02' },
+                    { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 3', caption: 'Poster 03' },
+                    { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 4', caption: 'Poster 04' },
+                    { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 5', caption: 'Poster 05' },
+                    { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 6', caption: 'Poster 06' },
+                    { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 7', caption: 'Poster 07' },
+                    { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 8', caption: 'Poster 08' }
                 ],
                 hideHeroVisual: true
             },
@@ -515,14 +515,119 @@
                     const figure = document.createElement('figure');
                     figure.className = 'project-poster-card';
 
-                    const image = document.createElement('img');
-                    image.src = poster.src;
-                    image.alt = poster.alt || `Poster ${index + 1}`;
+                    const media = document.createElement('div');
+                    media.className = 'project-poster-media';
+                    media.setAttribute('aria-label', `Poster galerij ${index + 1}`);
+
+                    const track = document.createElement('div');
+                    track.className = 'project-poster-track';
+
+                    const slides = [
+                        {
+                            src: poster.src,
+                            alt: poster.alt || `Poster ${index + 1}`,
+                            label: 'Poster'
+                        },
+                        {
+                            src: poster.mockupSrc || poster.src,
+                            alt: poster.mockupAlt || `${poster.alt || `Poster ${index + 1}`} mockup`,
+                            label: 'Mockup'
+                        }
+                    ];
+
+                    slides.forEach((slide) => {
+                        const slideEl = document.createElement('div');
+                        slideEl.className = 'project-poster-slide';
+
+                        const image = document.createElement('img');
+                        image.src = slide.src;
+                        image.alt = slide.alt;
+
+                        slideEl.appendChild(image);
+                        track.appendChild(slideEl);
+                    });
+
+                    const prevButton = document.createElement('button');
+                    prevButton.type = 'button';
+                    prevButton.className = 'project-poster-nav project-poster-nav-prev';
+                    prevButton.setAttribute('aria-label', 'Vorige weergave');
+                    prevButton.textContent = '←';
+
+                    const nextButton = document.createElement('button');
+                    nextButton.type = 'button';
+                    nextButton.className = 'project-poster-nav project-poster-nav-next';
+                    nextButton.setAttribute('aria-label', 'Volgende weergave');
+                    nextButton.textContent = '→';
+
+                    const state = document.createElement('p');
+                    state.className = 'project-poster-state';
+
+                    const dots = document.createElement('div');
+                    dots.className = 'project-poster-dots';
+
+                    const dotButtons = slides.map((slide, slideIndex) => {
+                        const dot = document.createElement('button');
+                        dot.type = 'button';
+                        dot.className = 'project-poster-dot';
+                        dot.setAttribute('aria-label', `Ga naar ${slide.label.toLowerCase()}`);
+                        dot.addEventListener('click', () => {
+                            activeSlide = slideIndex;
+                            updateActiveSlide();
+                        });
+                        dots.appendChild(dot);
+                        return dot;
+                    });
 
                     const caption = document.createElement('figcaption');
                     caption.textContent = poster.caption || `Poster ${String(index + 1).padStart(2, '0')}`;
 
-                    figure.appendChild(image);
+                    let activeSlide = 0;
+                    const updateActiveSlide = () => {
+                        track.style.transform = `translateX(-${activeSlide * 100}%)`;
+                        state.textContent = slides[activeSlide].label;
+                        dotButtons.forEach((dot, dotIndex) => {
+                            const isActive = dotIndex === activeSlide;
+                            dot.classList.toggle('is-active', isActive);
+                            dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+                        });
+                    };
+
+                    prevButton.onclick = () => {
+                        activeSlide = activeSlide === 0 ? slides.length - 1 : activeSlide - 1;
+                        updateActiveSlide();
+                    };
+
+                    nextButton.onclick = () => {
+                        activeSlide = activeSlide === slides.length - 1 ? 0 : activeSlide + 1;
+                        updateActiveSlide();
+                    };
+
+                    let touchStartX = 0;
+                    media.addEventListener('touchstart', (event) => {
+                        touchStartX = event.changedTouches[0].clientX;
+                    }, { passive: true });
+
+                    media.addEventListener('touchend', (event) => {
+                        const touchEndX = event.changedTouches[0].clientX;
+                        const swipeDistance = touchEndX - touchStartX;
+
+                        if (Math.abs(swipeDistance) < 40) return;
+
+                        if (swipeDistance < 0) {
+                            nextButton.click();
+                        } else {
+                            prevButton.click();
+                        }
+                    }, { passive: true });
+
+                    updateActiveSlide();
+
+                    media.appendChild(track);
+                    media.appendChild(prevButton);
+                    media.appendChild(nextButton);
+                    figure.appendChild(media);
+                    figure.appendChild(state);
+                    figure.appendChild(dots);
                     figure.appendChild(caption);
                     projectPostersGrid.appendChild(figure);
                 });
