@@ -389,7 +389,7 @@
                     final: { src: 'images/project-coming-soon.svg', alt: 'Project 06 final image' }
                 },
                 posterGrid: [
-                    { src: 'images/DISFIGURED GRACE.png', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 1', caption: 'Disfigured Grace' },
+                    { src: 'images/DISFIGURED GRACE.png', mockupSrc: 'images/mockup-poster1.png', alt: 'Poster 1', caption: 'Disfigured Grace' },
                     { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 2', caption: 'Poster 02' },
                     { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 3', caption: 'Poster 03' },
                     { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 4', caption: 'Poster 04' },
