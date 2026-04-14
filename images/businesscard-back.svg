@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240.94 155.91">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: .75;
+      }
+
+      .cls-2 {
+        letter-spacing: -.07em;
+      }
+
+      .cls-3 {
+        fill: #ee3c96;
+        fill-rule: evenodd;
+      }
+
+      .cls-4 {
+        font-family: 'AlteHaasGrotesk_Bold', 'Alte Haas Grotesk';
+        font-size: 30px;
+      }
+
+      .cls-4, .cls-5 {
+        fill: #231f20;
+      }
+
+      .cls-6 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-5 {
+        font-family: AlteHaasGrotesk, 'Alte Haas Grotesk';
+        font-size: 18px;
+      }
+    </style>
+  </defs>
+  <text class="cls-5" transform="translate(8.4 127.18)"><tspan x="0" y="0">+31 6 22130549</tspan></text>
+  <text class="cls-4" transform="translate(4.21 25.68)"><tspan x="0" y="0">Let</tspan><tspan class="cls-2" x="45.57" y="0">’</tspan><tspan x="51.69" y="0">s grab a</tspan><tspan x="0" y="36">co</tspan><tspan class="cls-6" x="35.55" y="36">f</tspan><tspan x="45" y="36">fee</tspan></text>
+  <g class="cls-1">
+    <polygon class="cls-3" points="178.49 64.38 171.54 40.79 179.99 38.3 187.1 62.43 200.55 37.75 208.28 41.97 195.21 65.95 218.26 59.16 220.75 67.6 197.16 74.55 221.84 88 217.62 95.74 192.94 82.29 199.89 105.88 191.44 108.37 184.65 85.32 171.59 109.3 163.85 105.08 177.3 80.4 153.17 87.51 150.68 79.06 174.27 72.11 150.29 59.05 154.51 51.31 178.49 64.38"/>
+  </g>
+  <text class="cls-5" transform="translate(5.1 147.52)"><tspan x="0" y="0">puckroskamp@gmail.com</tspan></text>
+</svg>

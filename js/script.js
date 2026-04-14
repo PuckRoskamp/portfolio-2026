@@ -166,11 +166,13 @@
         const projectFlowSection = document.querySelector('[data-project-flow-section]');
         const projectFlow = document.querySelector('[data-project-flow]');
         const projectFlowVisuals = Array.from(document.querySelectorAll('.project-flow .project-visual'));
+        const projectConceptVisual = document.querySelector('.project-flow-row:first-child .project-visual');
         const projectRoleSection = document.querySelector('[data-project-role-section]');
         const projectRoleLabel = document.querySelector('[data-project-role-label]');
         const projectRoleTitle = document.querySelector('[data-project-role-title]');
         const projectRoleText = document.querySelector('[data-project-role-text]');
         const projectLiveLink = document.querySelector('[data-project-live-link]');
+        const projectDownloadLink = document.querySelector('[data-project-download-link]');
         const projectVideoSection = document.querySelector('[data-project-video-section]');
         const projectVideoTitle = document.querySelector('[data-project-video-title]');
         const projectVideoAboutFilm = document.querySelector('[data-project-video-about-film]');
@@ -197,30 +199,36 @@
             // Card 01 -> project.html?id=project1
             'project1': {
                 titleHtml: 'Squeaky Clean<br />Typeface',
-                intro: 'Vervang dit met 1-2 zinnen over het projectdoel en de context.',
+                intro: 'Voor Squeaky Clean maakte ik lettervormen met groen afwasmiddel van Jumbo op een wit bord. Door een fysiek materiaal als basis te gebruiken kreeg de typeface een speelse, vloeibare uitstraling.',
                 details: {
-                    date: 'Coming soon',
-                    type: 'In progress',
-                    collab: 'TBA'
+                    date: 'April 2026',
+                    type: 'Typography',
+                    collab: 'Zelfstandig experiment'
                 },
                 insights: {
-                    a: 'Concept: beschrijf hier de creatieve richting en het centrale idee.',
-                    b: 'Proces: leg hier iteraties, tools en keuzes uit.',
-                    c: 'Resultaat: benoem hier het eindresultaat en wat je hebt geleerd.'
+                    a: 'Ik wilde typografie maken die letterlijk voelt als schoonmaakmiddel, met druppelachtige vormen en organische contouren in plaats van strakke geometrie.',
+                    b: 'Ik maakte alle letters met afwasmiddel op een wit bord, fotografeerde iedere letter apart en heb alle beelden daarna in Illustrator bewerkt. Met Image Trace zette ik de foto\'s om naar vectorvormen en schoonde ik elke letter handmatig op voor een consistente set.',
+                    c: 'Een experimentele display-typeface met een herkenbare “squeaky clean” vibe. Het project combineert analoog materiaalonderzoek met digitale uitwerking en heeft mijn blik op letterconstructie verbreed.'
                 },
-                quote: 'Vervang deze quote met een kernzin van het project.',
+                quote: 'Van afwasmiddel op een bord naar een complete, bruikbare letterset.',
                 captions: {
-                    hero: 'Caption hero image',
-                    a: 'Caption image A',
-                    b: 'Caption image B',
-                    final: 'Caption final image'
+                    hero: 'Squeaky Clean typeface toegepast als visueel statement.',
+                    a: 'Experiment met afwasmiddel als basis voor organische lettervormen.',
+                    b: 'Van foto naar vector: Image Trace en handmatige opschoning in Illustrator.',
+                    final: 'Eindresultaat van de Squeaky Clean letterset.'
                 },
                 images: {
-                    hero: { src: 'images/project-coming-soon.svg', alt: 'Project 01 hero image' },
-                    gridA: { src: 'images/project-coming-soon.svg', alt: 'Project 01 process image A' },
-                    gridB: { src: 'images/project-coming-soon.svg', alt: 'Project 01 process image B' },
-                    final: { src: 'images/project-coming-soon.svg', alt: 'Project 01 final image' }
-                }
+                    hero: { src: 'images/project1-card.svg', alt: 'Squeaky Clean typeface hero visual' },
+                    gridA: { src: 'images/project1-card.svg', alt: 'Squeaky Clean concept visual met vloeibare lettervormen' },
+                    gridB: { src: 'images/illustrator-project1.png', alt: 'Illustrator uitwerking van de Squeaky Clean letters' },
+                    final: { src: 'images/squeakyclean-result.svg', alt: 'Eindresultaat van de Squeaky Clean typeface' }
+                },
+                download: {
+                    label: 'Download font ↓',
+                    url: 'fonts/SqueakyClean-Regular.ttf',
+                    fileName: 'SqueakyClean-Regular.ttf'
+                },
+                hideConceptVisual: true
             },
 
             // Card 02 -> project.html?id=project2
@@ -291,30 +299,41 @@
 
             // Card 04 -> project.html?id=project4
             'project4': {
-                titleHtml: 'Coming Soon<br />04',
-                intro: 'Vervang dit met 1-2 zinnen over het projectdoel en de context.',
+                titleHtml: 'My Handwriting<br />Portfolio Font',
+                intro: 'Ik digitaliseerde mijn persoonlijke handschrift om mijn werk een herkenbare en authentieke touch te geven. Het font gebruik ik in mijn portfolio als visueel accent binnen de branding en titels.',
                 details: {
-                    date: 'Coming soon',
-                    type: 'In progress',
-                    collab: 'TBA'
+                    date: '2026',
+                    type: 'Typography / Brand section',
+                    collab: 'Zelfstandig'
                 },
                 insights: {
-                    a: 'Concept: beschrijf hier de creatieve richting en het centrale idee.',
-                    b: 'Proces: leg hier iteraties, tools en keuzes uit.',
-                    c: 'Resultaat: benoem hier het eindresultaat en wat je hebt geleerd.'
+                    a: 'Ik wilde mijn persoonlijke handschrift digitaliseren om mijn werk een herkenbare en authentieke touch te geven.',
+                    b: 'Met Calligrapher heb ik mijn handschrift ingescand, letters verfijnd en als werkend font geëxporteerd.',
+                    c: 'Een uniek, bruikbaar font dat ik toepas in mijn portfolio voor titels en accenten, waardoor mijn visuele stijl persoonlijker wordt.'
                 },
-                quote: 'Vervang deze quote met een kernzin van het project.',
+                quote: 'Een persoonlijk font maakt de brand section direct eigen.',
                 captions: {
-                    hero: 'Caption hero image',
-                    a: 'Caption image A',
-                    b: 'Caption image B',
-                    final: 'Caption final image'
+                    hero: '',
+                    a: '',
+                    b: '',
+                    final: ''
                 },
                 images: {
-                    hero: { src: 'images/project-coming-soon.svg', alt: 'Project 04 hero image' },
-                    gridA: { src: 'images/project-coming-soon.svg', alt: 'Project 04 process image A' },
-                    gridB: { src: 'images/project-coming-soon.svg', alt: 'Project 04 process image B' },
-                    final: { src: 'images/project-coming-soon.svg', alt: 'Project 04 final image' }
+                    hero: { src: 'images/handwriting-result.svg', alt: 'Project 04 handwriting font hero image' },
+                    gridA: { src: 'images/project-coming-soon.svg', alt: 'Project 04 handwriting process image A' },
+                    gridB: { src: 'images/project-coming-soon.svg', alt: 'Project 04 handwriting process image B' },
+                    final: { src: 'images/handwriting-result.svg', alt: 'Project 04 handwriting final image' }
+                },
+                role: {
+                    label: 'Typography & Brand Design',
+                    title: 'Mijn rol in dit project',
+                    text: 'Ik heb mijn eigen handschrift gedigitaliseerd, het font technisch uitgewerkt en vervolgens toegepast als herkenbaar merkaccent binnen mijn portfolio.'
+                },
+                hideVisuals: true,
+                download: {
+                    label: 'Download font ↓',
+                    url: 'fonts/Myhandwriting-Regular.ttf',
+                    fileName: 'Myhandwriting-Regular.ttf'
                 }
             },
 
@@ -486,6 +505,10 @@
             projectFlowVisuals.forEach((visual) => {
                 visual.hidden = hideVisuals;
             });
+
+            if (projectConceptVisual) {
+                projectConceptVisual.hidden = hideVisuals || Boolean(project.hideConceptVisual);
+            }
 
             if (projectCaptionHero) {
                 projectCaptionHero.hidden = hideVisuals;
@@ -669,6 +692,25 @@
             } else {
                 projectLiveLink.hidden = true;
                 projectLiveLink.removeAttribute('href');
+            }
+        }
+
+        if (projectDownloadLink) {
+            const hasDownload = Boolean(project.download && project.download.url);
+            if (hasDownload) {
+                projectDownloadLink.hidden = false;
+                projectDownloadLink.href = project.download.url;
+                projectDownloadLink.textContent = project.download.label || 'Download font ↓';
+
+                if (project.download.fileName) {
+                    projectDownloadLink.setAttribute('download', project.download.fileName);
+                } else {
+                    projectDownloadLink.setAttribute('download', '');
+                }
+            } else {
+                projectDownloadLink.hidden = true;
+                projectDownloadLink.removeAttribute('href');
+                projectDownloadLink.setAttribute('download', '');
             }
         }
 
