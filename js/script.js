@@ -409,13 +409,12 @@
                 },
                 posterGrid: [
                     { src: 'images/DISFIGURED GRACE.png', mockupSrc: 'images/mockup-poster1.png', alt: 'Poster 1', caption: 'Disfigured Grace' },
-                    { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 2', caption: 'Poster 02' },
-                    { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 3', caption: 'Poster 03' },
+                    { src: 'images/orchid-poster.png', mockupSrc: 'images/mockup-orchid.png', alt: 'Poster 2', caption: 'Orchid' },
+                    { src: 'images/a_is_for_impact_poster.png', mockupSrc: 'images/a-poster-mockup.png', alt: 'Poster 3', caption: 'A is for Impact' },
                     { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 4', caption: 'Poster 04' },
                     { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 5', caption: 'Poster 05' },
                     { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 6', caption: 'Poster 06' },
-                    { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 7', caption: 'Poster 07' },
-                    { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 8', caption: 'Poster 08' }
+
                 ],
                 hideHeroVisual: true
             },
