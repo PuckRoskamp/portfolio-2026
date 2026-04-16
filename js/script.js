@@ -424,7 +424,7 @@
                     { src: 'images/orchid-poster.png', mockupSrc: 'images/mockup-orchid.png', alt: 'Poster 2', caption: 'Orchid' },
                     { src: 'images/a_is_for_impact_poster.png', mockupSrc: 'images/a-poster-mockup.png', alt: 'Poster 3', caption: 'A is for Impact' },
                     { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 4', caption: 'Poster 04' },
-                    { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 5', caption: 'Poster 05' },
+                    { src: 'images/teeth-star-poster.png', mockupSrc: 'images/teeth-mockup.png', alt: 'Poster 5', caption: 'Soft Bite' },
                     { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 6', caption: 'Poster 06' },
 
                 ],
