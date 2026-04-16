@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 563">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 347.19px;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill: #edbc36;
+        font-family: TitilliumWeb-Black, 'Titillium Web';
+        font-weight: 800;
+      }
+
+      .cls-2 {
+        font-size: 137.07px;
+      }
+
+      .cls-4 {
+        letter-spacing: -.06em;
+      }
+
+      .cls-3 {
+        font-size: 126.66px;
+      }
+    </style>
+  </defs>
+  <rect width="900" height="563"/>
+  <g id="Text_Block" data-name="Text Block">
+    <text class="cls-3" transform="translate(22.26 151.93) scale(2.1 1)"><tspan x="0" y="0">SOUND</tspan></text>
+    <text class="cls-1" transform="translate(14.86 395.6) scale(2.1 1)"><tspan x="0" y="0">OF</tspan></text>
+    <text class="cls-2" transform="translate(17.88 496.71) scale(2.1 1)"><tspan x="0" y="0">ME</tspan><tspan class="cls-4" x="192.44" y="0">T</tspan><tspan x="255.9" y="0">AL</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 336 420">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 59.09px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #edd6ec;
+        font-family: SqueakyClean-Regular, 'Squeaky Clean';
+      }
+
+      .cls-3 {
+        fill: #4a3548;
+      }
+
+      .cls-2 {
+        font-size: 80.19px;
+      }
+    </style>
+  </defs>
+  <rect class="cls-3" x=".25" y="-.16" width="336" height="420"/>
+  <g id="Text_Block" data-name="Text Block">
+    <text class="cls-1" transform="translate(13.7 188.45)"><tspan x="0" y="0">Squeaky</tspan></text>
+    <text class="cls-2" transform="translate(13.59 265.8)"><tspan x="0" y="0">Clean</tspan></text>
+  </g>
+</svg>
