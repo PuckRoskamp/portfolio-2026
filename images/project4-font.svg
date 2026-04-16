@@ -3,16 +3,16 @@
   <defs>
     <style>
       .cls-1 {
-        fill: silver;
+        fill: #dab1e0;
       }
 
       .cls-2 {
+        fill: #fff;
         font-family: Myhandwriting-Regular, Myhandwriting;
-        font-size: 72px;
+        font-size: 30px;
       }
     </style>
   </defs>
   <rect class="cls-1" width="336" height="420"/>
-  <text class="cls-2" transform="translate(119.83 211.87)"><tspan x="0" y="0">Puck</tspan></text>
-  <text class="cls-2" transform="translate(44.49 264.21)"><tspan x="0" y="0">Handwritten</tspan></text>
+  <text class="cls-2" transform="translate(17.16 167.33)"><tspan x="0" y="0">ABCDEFGHIJKLMNOPQRSTUVWXYZ</tspan><tspan x="29.8" y="36">abcdefghijklmnopqrstuvwxyz</tspan><tspan x="101.53" y="72">0123456789</tspan><tspan x="128.26" y="108">!:;”’,.?</tspan></text>
 </svg>

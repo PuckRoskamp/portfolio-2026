@@ -233,31 +233,43 @@
 
             // Card 02 -> project.html?id=project2
             'project2': {
-                titleHtml: 'Coming Soon<br />02',
-                intro: 'Vervang dit met 1-2 zinnen over het projectdoel en de context.',
+                titleHtml: 'Maastricht<br />Photo Grid',
+                intro: 'Een fotografische collage van Maastricht, opgebouwd uit spontane straatbeelden, details en sfeerfoto\'s uit de stad.',
                 details: {
-                    date: 'Coming soon',
-                    type: 'In progress',
-                    collab: 'TBA'
+                    date: 'April 2026',
+                    type: 'Fotocollage / Stadsfotografie',
+                    collab: 'Zelfstandig'
                 },
                 insights: {
-                    a: 'Concept: beschrijf hier de creatieve richting en het centrale idee.',
-                    b: 'Proces: leg hier iteraties, tools en keuzes uit.',
-                    c: 'Resultaat: benoem hier het eindresultaat en wat je hebt geleerd.'
+                    a: 'Voor dit project draait het om ritme in beeld: architectuur, mensen, texturen en lichtmomenten uit Maastricht samengebracht in een visuele serie.',
+                    b: 'Ik fotografeer op locatie in de stad en curate daarna de selectie op contrast, compositie en kleur, zodat de beelden als collage samenhang houden.',
+                    c: 'Het eindresultaat is een dynamisch grid dat de sfeer van Maastricht vangt in één overzichtelijke, visuele narratief.'
                 },
-                quote: 'Vervang deze quote met een kernzin van het project.',
+                quote: 'Maastricht in fragmenten: straat, licht, ritme en detail.',
                 captions: {
-                    hero: 'Caption hero image',
-                    a: 'Caption image A',
-                    b: 'Caption image B',
-                    final: 'Caption final image'
+                    hero: '',
+                    a: '',
+                    b: '',
+                    final: ''
                 },
                 images: {
                     hero: { src: 'images/project-coming-soon.svg', alt: 'Project 02 hero image' },
                     gridA: { src: 'images/project-coming-soon.svg', alt: 'Project 02 process image A' },
                     gridB: { src: 'images/project-coming-soon.svg', alt: 'Project 02 process image B' },
                     final: { src: 'images/project-coming-soon.svg', alt: 'Project 02 final image' }
-                }
+                },
+                photoGrid: [
+                    { src: 'images/project-coming-soon.svg', alt: 'Maastricht street photo 01' },
+                    { src: 'images/project-coming-soon.svg', alt: 'Maastricht street photo 02' },
+                    { src: 'images/project-coming-soon.svg', alt: 'Maastricht street photo 03' },
+                    { src: 'images/project-coming-soon.svg', alt: 'Maastricht street photo 04' },
+                    { src: 'images/project-coming-soon.svg', alt: 'Maastricht street photo 05' },
+                    { src: 'images/project-coming-soon.svg', alt: 'Maastricht street photo 06' },
+                    { src: 'images/project-coming-soon.svg', alt: 'Maastricht street photo 07' },
+                    { src: 'images/project-coming-soon.svg', alt: 'Maastricht street photo 08' }
+                ],
+                hideHeroVisual: true,
+                hideFlowSection: true
             },
 
             // Card 03 -> project.html?id=project3
@@ -495,7 +507,8 @@
 
         if (projectFlowSection) {
             const hasPosterGrid = Array.isArray(project.posterGrid) && project.posterGrid.length > 0;
-            projectFlowSection.hidden = Boolean(project.hideFlowSection || hasPosterGrid);
+            const hasPhotoGrid = Array.isArray(project.photoGrid) && project.photoGrid.length > 0;
+            projectFlowSection.hidden = Boolean(project.hideFlowSection || hasPosterGrid || hasPhotoGrid);
         }
 
         if (projectFlow) {
@@ -528,10 +541,31 @@
 
         if (projectPostersSection && projectPostersGrid) {
             const hasPosterGrid = Array.isArray(project.posterGrid) && project.posterGrid.length > 0;
-            projectPostersSection.hidden = !hasPosterGrid;
+            const hasPhotoGrid = Array.isArray(project.photoGrid) && project.photoGrid.length > 0;
+            projectPostersSection.hidden = !(hasPosterGrid || hasPhotoGrid);
 
-            if (hasPosterGrid) {
+            if (hasPosterGrid || hasPhotoGrid) {
                 projectPostersGrid.innerHTML = '';
+                projectPostersGrid.classList.toggle('is-collage', hasPhotoGrid);
+
+                if (hasPhotoGrid) {
+                    project.photoGrid.slice(0, 12).forEach((photo, index) => {
+                        const figure = document.createElement('figure');
+                        figure.className = 'project-photo-tile';
+
+                        if (index % 5 === 0) figure.classList.add('is-wide');
+                        if (index % 3 === 1) figure.classList.add('is-tall');
+
+                        const image = document.createElement('img');
+                        image.src = photo.src;
+                        image.alt = photo.alt || `Maastricht photo ${index + 1}`;
+
+                        figure.appendChild(image);
+                        projectPostersGrid.appendChild(figure);
+                    });
+
+                    return;
+                }
 
                 project.posterGrid.slice(0, 8).forEach((poster, index) => {
                     const figure = document.createElement('figure');
