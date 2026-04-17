@@ -39,7 +39,8 @@
                 }
             };
 
-            setTimeout(typeNextCharacter, 280);
+            typeNextCharacter();
+
         } else {
             heroTitle.textContent = originalText;
         }
@@ -142,6 +143,29 @@
         updateCarousel();
     }
 
+    // Homepage business card click toggle (front/back swap).
+    const businesscardToggle = document.querySelector('[data-businesscard-toggle]');
+    if (businesscardToggle) {
+        const updateBusinesscardState = () => {
+            const isFlipped = businesscardToggle.classList.contains('is-flipped');
+            businesscardToggle.setAttribute('aria-pressed', isFlipped ? 'true' : 'false');
+        };
+
+        const toggleBusinesscard = () => {
+            businesscardToggle.classList.toggle('is-flipped');
+            updateBusinesscardState();
+        };
+
+        businesscardToggle.addEventListener('click', toggleBusinesscard);
+        businesscardToggle.addEventListener('keydown', (event) => {
+            if (event.key !== 'Enter' && event.key !== ' ') return;
+            event.preventDefault();
+            toggleBusinesscard();
+        });
+
+        updateBusinesscardState();
+    }
+
     // Dynamic project detail content from URL query (?id=...)
     const projectTitle = document.querySelector('[data-project-title]');
     if (projectTitle) {
@@ -233,19 +257,19 @@
 
             // Card 02 -> project.html?id=project2
             'project2': {
-                titleHtml: 'Maastricht<br />Photo Grid',
-                intro: 'Een fotografische collage van Maastricht, opgebouwd uit spontane straatbeelden, details en sfeerfoto\'s uit de stad.',
+                titleHtml: 'Photography<br />Collection',
+                intro: 'Een fotografische selectie met uiteenlopende beelden: van detailshots en straatmomenten tot composities die vooral draaien om sfeer, contrast en ritme.',
                 details: {
-                    date: 'April 2026',
-                    type: 'Fotocollage / Stadsfotografie',
+                    date: '2024 - 2026',
+                    type: 'Fotografie / Curated Selection',
                     collab: 'Zelfstandig'
                 },
                 insights: {
-                    a: 'Voor dit project draait het om ritme in beeld: architectuur, mensen, texturen en lichtmomenten uit Maastricht samengebracht in een visuele serie.',
-                    b: 'Ik fotografeer op locatie in de stad en curate daarna de selectie op contrast, compositie en kleur, zodat de beelden als collage samenhang houden.',
-                    c: 'Het eindresultaat is een dynamisch grid dat de sfeer van Maastricht vangt in één overzichtelijke, visuele narratief.'
+                    a: 'De focus ligt op beeldritme: contrast tussen vorm, textuur, licht en negatieve ruimte, zodat elke foto zelfstandig werkt maar ook onderdeel blijft van een geheel.',
+                    b: 'Na het fotograferen maak ik een selectie op compositie, tonaliteit en visuele balans. Daardoor voelt het grid niet als losse beelden, maar als een consistente serie.',
+                    c: 'Het resultaat is een flexibel fotografisch overzicht waarin verschillende stijlen en onderwerpen samenkomen in een heldere, visuele flow.'
                 },
-                quote: 'Maastricht in fragmenten: straat, licht, ritme en detail.',
+                quote: 'Fotografie als ritme: beeld, contrast en detail in balans.',
                 captions: {
                     hero: '',
                     a: '',
@@ -259,14 +283,14 @@
                     final: { src: 'images/project-coming-soon.svg', alt: 'Project 02 final image' }
                 },
                 photoGrid: [
-                    { src: 'images/project-coming-soon.svg', alt: 'Maastricht street photo 01' },
-                    { src: 'images/project-coming-soon.svg', alt: 'Maastricht street photo 02' },
-                    { src: 'images/project-coming-soon.svg', alt: 'Maastricht street photo 03' },
-                    { src: 'images/project-coming-soon.svg', alt: 'Maastricht street photo 04' },
-                    { src: 'images/project-coming-soon.svg', alt: 'Maastricht street photo 05' },
-                    { src: 'images/project-coming-soon.svg', alt: 'Maastricht street photo 06' },
-                    { src: 'images/project-coming-soon.svg', alt: 'Maastricht street photo 07' },
-                    { src: 'images/project-coming-soon.svg', alt: 'Maastricht street photo 08' }
+                    { src: 'images/fruit.jpeg', alt: 'Photography image 01' },
+                    { src: 'images/paard.jpeg', alt: 'Photography image 02' },
+                    { src: 'images/duif.jpeg', alt: 'Photography image 03' },
+                    { src: 'images/bok.jpeg', alt: 'Photography image 04' },
+                    { src: 'images/maastricht.jpeg', alt: 'Photography image 05' },
+                    { src: 'images/fiets.jpeg', alt: 'Photography image 06' },
+                    { src: 'images/denemarken-boot.jpeg', alt: 'Photography image 07' },
+                    { src: 'images/denemarken-regenboog.jpeg', alt: 'Photography image 08' }
                 ],
                 hideHeroVisual: true,
                 hideFlowSection: true
@@ -422,10 +446,17 @@
                 posterGrid: [
                     { src: 'images/DISFIGURED GRACE.png', mockupSrc: 'images/mockup-poster1.png', alt: 'Poster 1', caption: 'Disfigured Grace' },
                     { src: 'images/orchid-poster.png', mockupSrc: 'images/mockup-orchid.png', alt: 'Poster 2', caption: 'Orchid' },
-                    { src: 'images/a_is_for_impact_poster.png', mockupSrc: 'images/a-poster-mockup.png', alt: 'Poster 3', caption: 'A is for Impact' },
-                    { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 4', caption: 'Poster 04' },
+                    { src: 'images/barbed wire poster.png', mockupSrc: 'images/barbedwire-mockup.png', alt: 'Poster 3', caption: 'Break the Silence' },
+                    { src: 'images/SIGNAL_01-poster.png', mockupSrc: 'images/signal-mockup.png', alt: 'Poster 4', caption: 'SIGNAL_01' },
                     { src: 'images/teeth-star-poster.png', mockupSrc: 'images/teeth-mockup.png', alt: 'Poster 5', caption: 'Soft Bite' },
-                    { src: 'images/project-coming-soon.svg', mockupSrc: 'images/project-coming-soon.svg', alt: 'Poster 6', caption: 'Poster 06' },
+                    {
+                        src: 'images/focusfocusfocus.png',
+                        mockupSrc: 'images/focus-mockup.png',
+                        alt: 'Focus poster',
+                        caption: 'FOCUS / DISTORTION',
+                        cycleImages: ['images/focusfocusfocus.png', 'images/focusfocusfocus2.png'],
+                        cycleDelay: 3200
+                    },
 
                 ],
                 hideHeroVisual: true
@@ -558,7 +589,7 @@
 
                         const image = document.createElement('img');
                         image.src = photo.src;
-                        image.alt = photo.alt || `Maastricht photo ${index + 1}`;
+                        image.alt = photo.alt || `Photography image ${index + 1}`;
 
                         figure.appendChild(image);
                         projectPostersGrid.appendChild(figure);
@@ -582,12 +613,14 @@
                         {
                             src: poster.src,
                             alt: poster.alt || `Poster ${index + 1}`,
-                            label: 'Poster'
+                            label: 'Poster',
+                            type: 'image'
                         },
                         {
-                            src: poster.mockupSrc || poster.src,
+                            src: poster.mockupStyle === 'frame' ? poster.src : (poster.mockupSrc || poster.src),
                             alt: poster.mockupAlt || `${poster.alt || `Poster ${index + 1}`} mockup`,
-                            label: 'Mockup'
+                            label: 'Mockup',
+                            type: poster.mockupStyle === 'frame' ? 'frame' : 'image'
                         }
                     ];
 
@@ -595,11 +628,30 @@
                         const slideEl = document.createElement('div');
                         slideEl.className = 'project-poster-slide';
 
-                        const image = document.createElement('img');
-                        image.src = slide.src;
-                        image.alt = slide.alt;
+                        if (slide.type === 'frame') {
+                            slideEl.classList.add('is-mockup');
 
-                        slideEl.appendChild(image);
+                            const mockup = document.createElement('div');
+                            mockup.className = 'project-poster-mockup';
+
+                            const frame = document.createElement('div');
+                            frame.className = 'project-poster-mockup-frame';
+
+                            const image = document.createElement('img');
+                            image.src = slide.src;
+                            image.alt = slide.alt;
+
+                            frame.appendChild(image);
+                            mockup.appendChild(frame);
+                            slideEl.appendChild(mockup);
+                        } else {
+                            const image = document.createElement('img');
+                            image.src = slide.src;
+                            image.alt = slide.alt;
+
+                            slideEl.appendChild(image);
+                        }
+
                         track.appendChild(slideEl);
                     });
 
@@ -688,6 +740,40 @@
                     projectPostersGrid.appendChild(figure);
                 });
             }
+
+            projectPostersGrid.querySelectorAll('.project-poster-card').forEach((card, index) => {
+                const poster = project.posterGrid[index];
+                if (!poster || !Array.isArray(poster.cycleImages) || poster.cycleImages.length < 2) return;
+
+                const image = card.querySelector('.project-poster-slide img');
+                if (!image) return;
+
+                const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                if (reducedMotion) return;
+
+                const cycleImages = poster.cycleImages.filter(Boolean);
+                const cycleDelay = Number.isFinite(poster.cycleDelay) ? poster.cycleDelay : 3000;
+                let cycleIndex = 0;
+
+                const swapImage = () => {
+                    cycleIndex = (cycleIndex + 1) % cycleImages.length;
+                    const nextSrc = cycleImages[cycleIndex];
+                    image.style.opacity = '0';
+
+                    window.setTimeout(() => {
+                        image.src = nextSrc;
+                        image.onload = () => {
+                            image.style.opacity = '1';
+                        };
+
+                        if (image.complete) {
+                            image.style.opacity = '1';
+                        }
+                    }, 180);
+                };
+
+                window.setInterval(swapImage, cycleDelay);
+            });
         }
 
         if (projectHeroImage) {
