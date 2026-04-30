@@ -203,6 +203,7 @@
         const projectVideoWhy = document.querySelector('[data-project-video-why]');
         const projectVideoCaption = document.querySelector('[data-project-video-caption]');
         const projectVideo = document.querySelector('[data-project-video]');
+        let projectVideoEmbed = document.querySelector('[data-project-video-embed]');
         const videoPlayButton = document.querySelector('[data-video-play]');
         const videoPauseButton = document.querySelector('[data-video-pause]');
         const videoReplayButton = document.querySelector('[data-video-replay]');
@@ -494,7 +495,11 @@
                     aboutFilm: 'Over de film: Sound of Metal (2019) gaat over identiteit, verlies en acceptatie wanneer een muzikant geconfronteerd wordt met plots gehoorverlies.',
                     whyChosen: 'Waarom deze film: ik koos deze film omdat je de spanning tussen geluid en stilte sterk kunt vertalen naar typography, cuts en motion timing.',
                     caption: '',
-                    src: 'images/title-sequence-placeholder.mp4',
+                    // replaced local mp4 placeholder with Vimeo embed (private on Vimeo)
+                    embed: {
+                        url: 'https://player.vimeo.com/video/1188101611?badge=0&autopause=0&player_id=0&app_id=58479',
+                        title: 'SOUND_OF_METAL_TITLE_SEQUENCE'
+                    },
                     poster: 'images/ae-sound-of-metal.svg'
                 },
                 hideHeroVisual: true,
@@ -851,13 +856,56 @@
                 projectVideoCaption.hidden = !hasCaption;
             }
 
-            projectVideo.src = project.video.src;
-            if (project.video.poster) {
-                projectVideo.poster = project.video.poster;
+            const hasVideoEmbed = Boolean(project.video.embed && project.video.embed.url);
+
+            if (hasVideoEmbed) {
+                // insert an iframe embed for external players (Vimeo, etc.)
+                if (!projectVideoEmbed) {
+                    projectVideoEmbed = document.createElement('iframe');
+                    projectVideoEmbed.setAttribute('data-project-video-embed', '');
+                    projectVideoEmbed.setAttribute('frameborder', '0');
+                    projectVideoEmbed.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; encrypted-media; web-share');
+                    projectVideoEmbed.style.width = '100%';
+                    projectVideoEmbed.style.height = '100%';
+                    projectVideoEmbed.style.border = '0';
+                    projectVideo.parentNode.insertBefore(projectVideoEmbed, projectVideo.nextSibling);
+                }
+
+                // hide the native video element and controls
+                projectVideo.hidden = true;
+                projectVideo.style.display = 'none';
+                if (videoPlayButton) videoPlayButton.hidden = true;
+                if (videoPauseButton) videoPauseButton.hidden = true;
+                if (videoReplayButton) videoReplayButton.hidden = true;
+                if (videoProgress) videoProgress.hidden = true;
+
+                projectVideoEmbed.hidden = false;
+                projectVideoEmbed.style.display = 'block';
+                projectVideoEmbed.src = project.video.embed.url;
+                projectVideoEmbed.title = project.video.embed.title || `${titlePlain} video`;
             } else {
-                projectVideo.removeAttribute('poster');
+                // fallback to native video element
+                if (projectVideoEmbed) {
+                    projectVideoEmbed.hidden = true;
+                    projectVideoEmbed.style.display = 'none';
+                    projectVideoEmbed.removeAttribute('src');
+                }
+
+                projectVideo.hidden = false;
+                projectVideo.style.display = 'block';
+                if (videoPlayButton) videoPlayButton.hidden = false;
+                if (videoPauseButton) videoPauseButton.hidden = false;
+                if (videoReplayButton) videoReplayButton.hidden = false;
+                if (videoProgress) videoProgress.hidden = false;
+
+                projectVideo.src = project.video.src || '';
+                if (project.video.poster) {
+                    projectVideo.poster = project.video.poster;
+                } else {
+                    projectVideo.removeAttribute('poster');
+                }
+                projectVideo.setAttribute('aria-label', `${titlePlain} video preview`);
             }
-            projectVideo.setAttribute('aria-label', `${titlePlain} video preview`);
 
             const setActiveControl = (control) => {
                 [videoPlayButton, videoPauseButton].forEach((button) => {
