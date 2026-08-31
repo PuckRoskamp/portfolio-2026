@@ -299,39 +299,41 @@
 
             // Card 03 -> project.html?id=project3
             'project3': {
-                titleHtml: 'Spark — Coding Workshop for Students',
-                intro: 'Spark is ontwikkeld binnen een blokproject in het eerste jaar van Communication & Multimedia Design. De opdracht was om in teamverband een interactieve workshop te ontwerpen voor middelbare scholieren, waarin zij op een toegankelijke en speelse manier kennismaken met coderen.',
+                titleHtml: 'Kunst in een<br />zorgvisie',
+                intro: 'Wat doe je als je in een wachtkamer zit en je hoofd vol zit met zorgen? Voor Zuyderland onderzocht ik of kunst daar iets aan kan veranderen. Niet als decoratie aan de muur, maar als iets wat je actief meeneemt. Het resultaat: een A5-puzzelboekje dat bezoekers even laat ademhalen, nadenken en spelen, terwijl het ze tegelijkertijd laat kennismaken met de kunstcollectie van het ziekenhuis.',
                 details: {
-                    date: '2025',
-                    type: 'Schoolproject — Teamproject',
-                    collab: 'Teamproject met medestudenten binnen CMD'
+                    date: 'Blok 3 en 4 | 23 feb 2026 t/m 30 juni 2026',
+                    type: 'CMD project — Zuyderland',
+                    collab: 'Zuyderland, Arno Sijben, Stef Petit, Janneke Roijers en Dave Krapels'
                 },
                 insights: {
-                    a: 'Het concept draaide om leren door te doen. Door middel van interactieve opdrachten, visuele elementen en een speelse aanpak maakten we coderen begrijpelijk en leuk voor een jonge doelgroep zonder technische voorkennis.',
-                    b: 'Tijdens het project werkten we in teamverband aan zowel de inhoud als de vormgeving van de workshop. Mijn focus lag op de branding van Spark, waarbij ik onder andere mascottes ontwierp en een brandboard ontwikkelde om een consistente visuele identiteit neer te zetten. Daarnaast documenteerde ik de workshop door foto’s en video’s te maken, inclusief interviews en promotiemateriaal.',
-                    c: 'Het eindresultaat is een interactieve workshop waarin leerlingen actief kennismaken met coderen in een laagdrempelige en leuke setting. De visuele stijl en branding zorgen voor een samenhangende ervaring, terwijl de vastgelegde foto- en videomaterialen zijn gebruikt voor promotie en documentatie van het project.'
+                    a: 'Het uitgangspunt was escapisme: de behoefte om even ergens anders te zijn dan waar je bent. Ik onderzocht wat mensen helpt om mentaal los te komen van een stressvolle situatie en welke rol kunst daarin kan spelen.',
+                    b: 'Om dat te toetsen aan de praktijk nam ik drie interviews af: twee met medewerkers van Zuyderland en één met een patiënt. Die gesprekken maakten duidelijk dat kunst in een zorgomgeving niet groot of ingewikkeld hoeft te zijn; het mag gewoon zacht zijn, toegankelijk en aanwezig.',
+                    c: 'Het eindresultaat is een laagdrempelig puzzelboekje in A5-formaat. Zeven kunstenaars uit de Zuyderland-collectie zijn gekoppeld aan opdrachten zoals een sudoku, woordzoeker en schrijfvraag. Tijdens de expo in Zuyderland Sittard konden bezoekers en patiënten het boekje zelf uitproberen.'
                 },
-                quote: 'Leren coderen begint met nieuwsgierigheid en plezier.',
+                quote: 'Kunst is geen luxe, maar een essentieel onderdeel van zorg.',
                 captions: {
-                    hero: 'Website die de workshop en bijbehorende beleving visueel en inhoudelijk vastlegt.',
-                    a: 'Kleurenpalet en visuele stijl vastgelegd in het brandboard.',
-                    b: 'Leerling aan het werk met p5.js tijdens de interactieve workshop.',
-                    final: 'Ontwikkelde mascottes als onderdeel van de visuele identiteit van Spark.'
+                    hero: 'Puzzelboekje voor in de wachtkamer van Zuyderland.',
+                    a: 'Escapisme en interviews vormden de inhoudelijke basis.',
+                    b: 'Schetsen, prototypen en testen in blok 4.',
+                    final: 'Geprinte A5-boekjes getest tijdens de expo in Sittard.'
                 },
                 images: {
-                    hero: { src: 'images/project3-spark-workshops.svg', alt: 'Project 03 hero image' },
-                    gridA: { src: 'images/spark-color.svg', alt: 'Project 03 process image A' },
-                    gridB: { src: 'images/closeup-jongen.jpg', alt: 'Project 03 process image B' },
-                    final: { src: 'images/spark-mascottes.svg', alt: 'Project 03 final image' }
+                    hero: { src: 'images/zuyderland-a5-mockup.png', alt: 'Kunst in een zorgvisie hero visual' },
+                    gridA: { src: 'images/zuyderland-a5-mockup.png', alt: 'Kunst in een zorgvisie process visual A' },
+                    gridB: { src: 'images/zuyderland-a5-mockup.png', alt: 'Kunst in een zorgvisie process visual B' },
+                    final: { src: 'images/zuyderland-a5-mockup.png', alt: 'Kunst in een zorgvisie final visual' }
                 },
                 website: {
-                    label: 'Bekijk website ↗',
-                    url: 'https://sparkworkshop.nl/'
+                    label: 'Lees blogs op Substack ↗',
+                    url: 'https://substack.com/@puckr27'
                 },
-                embed: {
-                    url: 'https://sparkworkshop.nl/',
-                    title: 'Spark workshop live preview'
-                }
+                download: {
+                    label: 'Download pdf ↓',
+                    url: 'zuyderland-collectie.pdf',
+                    fileName: 'zuyderland-collectie.pdf'
+                },
+                hideVisuals: true
             },
 
             // Card 04 -> project.html?id=project4
@@ -509,6 +511,15 @@
 
         const selectedId = new URLSearchParams(window.location.search).get('id');
         const project = projects[selectedId] || projects['project1'];
+        const plainTitle = project.titleHtml.replace(/<br\s*\/?\s*>/gi, ' ').replace(/\s+/g, ' ').trim();
+
+        if (document.title) {
+            document.title = `${plainTitle} — Puck Roskamp`;
+        }
+
+        if (pageDescription) {
+            pageDescription.setAttribute('content', project.intro);
+        }
 
         projectTitle.innerHTML = project.titleHtml;
         if (projectIntro) projectIntro.textContent = project.intro;
@@ -534,8 +545,6 @@
         updateImage(projectGridA, project.images.gridA);
         updateImage(projectGridB, project.images.gridB);
         updateImage(projectFinal, project.images.final);
-
-        const titlePlain = project.titleHtml.replace(/<br\s*\/?\s*>/gi, ' ').replace(/\s+/g, ' ').trim();
 
         if (projectHeroFigure) {
             projectHeroFigure.hidden = Boolean(project.hideHeroVisual);
@@ -1000,6 +1009,52 @@
         if (pageDescription) {
             pageDescription.setAttribute('content', `${titlePlain} project detail page from the portfolio of Puck Roskamp.`);
         }
+    }
+
+    // Work page filters
+    const workGrid = document.querySelector('[data-work-grid]');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+    if (workGrid && filterButtons.length > 0) {
+        filterButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const filterValue = button.dataset.filter;
+
+                // Update active button
+                filterButtons.forEach((btn) => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Filter and reorder work cards
+                const workCards = workGrid.querySelectorAll('.work-card');
+                const matchedCards = [];
+                const unmatchedCards = [];
+
+                workCards.forEach((card, index) => {
+                    const cardTags = card.dataset.tags ? card.dataset.tags.split(' ') : [];
+                    const shouldShow = filterValue === 'all' || cardTags.includes(filterValue);
+
+                    if (shouldShow) {
+                        card.classList.remove('hidden');
+                        card.style.order = index;
+                        matchedCards.push({ card, index });
+                    } else {
+                        card.classList.add('hidden');
+                        card.style.order = 1000 + index;
+                        unmatchedCards.push({ card, index });
+                    }
+                });
+
+                // Reorder matched cards to appear first
+                matchedCards.forEach((item, idx) => {
+                    item.card.style.order = idx;
+                });
+
+                // Reorder unmatched cards after matched ones
+                unmatchedCards.forEach((item, idx) => {
+                    item.card.style.order = matchedCards.length + idx;
+                });
+            });
+        });
     }
 })();
 

@@ -42,38 +42,47 @@
                     met design, kleur en vorm.
                 </p>
 
-                <div class="work-grid">
-                    <article class="work-card">
+                <div class="work-filters" role="group" aria-label="Project filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="branding">Branding</button>
+                    <button class="filter-btn" data-filter="typography">Typography</button>
+                    <button class="filter-btn" data-filter="digital">Digital</button>
+                    <button class="filter-btn" data-filter="print">Print</button>
+                    <button class="filter-btn" data-filter="poster">Poster</button>
+                    <button class="filter-btn" data-filter="photography">Photography</button>
+                    <button class="filter-btn" data-filter="motion">Motion</button>
+                </div>
+
+                <div class="work-grid" data-work-grid>
+                    <article class="work-card" data-tags="typography">
                         <a href="project.html?id=project1" class="work-thumb">
                             <img src="images/project1-card.svg" alt="Squeaky Clean Typeface preview" />
                         </a>
                         <h2 class="project-title"><a href="project.html?id=project1">Squeaky Clean Typeface</a></h2>
                     </article>
 
-                    <article class="work-card">
+                    <article class="work-card" data-tags="photography">
                         <a href="project.html?id=project2" class="work-thumb">
                             <img src="images/foto-project-card.jpg" alt="Photography Collection preview" />
                         </a>
                         <h2 class="project-title"><a href="project.html?id=project2">Photography Collection</a></h2>
                     </article>
 
-                    <article class="work-card">
+                    <article class="work-card" data-tags="print branding">
                         <a href="project.html?id=project3" class="work-thumb">
-                            <img src="images/project3-spark-workshops.svg"
-                                alt="Spark — Coding Workshop for Students preview" />
+                            <img src="images/project_zuyderland-card.svg" alt="Kunst in een zorgvisie preview" />
                         </a>
-                        <h2 class="project-title"><a href="project.html?id=project3">Spark — Coding Workshop for
-                                Students</a></h2>
+                        <h2 class="project-title"><a href="project.html?id=project3">Kunst in een zorgvisie</a></h2>
                     </article>
 
-                    <article class="work-card">
+                    <article class="work-card" data-tags="typography">
                         <a href="project.html?id=project4" class="work-thumb work-thumb-handwriting">
                             <img src="images/handwriting-project4.svg" alt="My Handwriting Font preview" />
                         </a>
                         <h2 class="project-title"><a href="project.html?id=project4">My Handwriting<br />Font</a></h2>
                     </article>
 
-                    <article class="work-card">
+                    <article class="work-card" data-tags="digital branding">
                         <a href="project.html?id=project5" class="work-thumb">
                             <img src="images/cbs-card.svg" alt="CBS Data Story card preview" />
                         </a>
@@ -81,7 +90,7 @@
                                 Data</a></h2>
                     </article>
 
-                    <article class="work-card">
+                    <article class="work-card" data-tags="poster print">
                         <a href="project.html?id=project6" class="work-thumb">
                             <img src="images/poster-archive-card.svg" alt="Poster Archive Collection" />
                         </a>
@@ -104,7 +113,7 @@
                 </p>
 
                 <div class="ae-featured-grid">
-                    <article class="work-card ae-featured-card">
+                    <article class="work-card ae-featured-card" data-tags="motion">
                         <a href="project.html?id=ae-sound-of-metal" class="work-thumb">
                             <img src="images/ae-sound-of-metal.svg" alt="Sound of Metal Titelsequence coming soon" />
                         </a>
@@ -122,13 +131,11 @@
             <span>VISUAL IDENTITY <span class="dot">•</span></span>
             <span>TYPOGRAPHY <span class="dot">•</span></span>
             <span>BRANDING <span class="dot">•</span></span>
-            <span>EDITORIAL DESIGN <span class="dot">•</span></span>
             <span>BASED IN MAASTRICHT <span class="dot">•</span></span>
             <span>GRAPHIC DESIGN <span class="dot">•</span></span>
             <span>VISUAL IDENTITY <span class="dot">•</span></span>
             <span>TYPOGRAPHY <span class="dot">•</span></span>
             <span>BRANDING <span class="dot">•</span></span>
-            <span>EDITORIAL DESIGN <span class="dot">•</span></span>
             <span>BASED IN MAASTRICHT <span class="dot">•</span></span>
         </div>
     </div>
@@ -142,17 +149,17 @@
 
             <div class="footer-right">
                 <p class="footer-heading">Contact</p>
-                <p class="footer-note">2e jaars CMD student aan Zuyd UAS, Maastricht</p>
+                <p class="footer-note">3e jaars CMD student, stagair bij L'Okapi</p>
                 <ul class="footer-socials" aria-label="Social media links">
                     <li><a class="footer-social-link"
                             href="https://www.instagram.com/puck_r27?igsh=MW56YmIwOGhyd3IzeQ%3D%3D&utm_source=qr"
                             aria-label="Instagram">Instagram</a></li>
                     <li><a class="footer-social-link" href="https://www.linkedin.com/in/puck-roskamp"
                             aria-label="LinkedIn">LinkedIn</a></li>
-                    <li><a class="footer-social-link" href="#" aria-label="Behance">Behance</a></li>
                 </ul>
             </div>
         </div>
+        <div class="container footer-ownership"><strong>© 2026</strong> — Designed &amp; built by Puck Roskamp.</div>
     </footer>
 
     <script src="js/script.js" defer></script>
