@@ -103,6 +103,7 @@
         const slides = Array.from(featuredCarousel.querySelectorAll('[data-slide]'));
         const prevButton = featuredCarousel.querySelector('[data-carousel-prev]');
         const nextButton = featuredCarousel.querySelector('[data-carousel-next]');
+        const viewport = featuredCarousel.querySelector('.featured-viewport');
         const dots = Array.from(document.querySelectorAll('[data-carousel-dot]'));
 
         let activeIndex = 0;
@@ -139,6 +140,31 @@
                 updateCarousel();
             });
         });
+
+        if (viewport) {
+            let touchStartX = 0;
+            let touchStartY = 0;
+
+            viewport.addEventListener('touchstart', (event) => {
+                const touch = event.changedTouches[0];
+                touchStartX = touch.clientX;
+                touchStartY = touch.clientY;
+            }, { passive: true });
+
+            viewport.addEventListener('touchend', (event) => {
+                const touch = event.changedTouches[0];
+                const swipeDistanceX = touch.clientX - touchStartX;
+                const swipeDistanceY = touch.clientY - touchStartY;
+
+                if (Math.abs(swipeDistanceX) < 48 || Math.abs(swipeDistanceX) <= Math.abs(swipeDistanceY)) return;
+
+                if (swipeDistanceX < 0) {
+                    nextButton?.click();
+                } else {
+                    prevButton?.click();
+                }
+            }, { passive: true });
+        }
 
         updateCarousel();
     }
@@ -487,10 +513,10 @@
                     final: 'Hier komt de uiteindelijke still uit de final sequence.'
                 },
                 images: {
-                    hero: { src: 'images/ae-sound-of-metal.svg', alt: 'Sound of Metal title sequence hero frame' },
-                    gridA: { src: 'images/ae-sound-of-metal.svg', alt: 'Process frame with typography tests' },
-                    gridB: { src: 'images/ae-sound-of-metal.svg', alt: 'Motion and transition iteration frame' },
-                    final: { src: 'images/ae-sound-of-metal.svg', alt: 'Final title sequence frame preview' }
+                    hero: { src: 'images/recent-werk-card1.svg', alt: 'Sound of Metal title sequence hero frame' },
+                    gridA: { src: 'images/recent-werk-card1.svg', alt: 'Process frame with typography tests' },
+                    gridB: { src: 'images/recent-werk-card1.svg', alt: 'Motion and transition iteration frame' },
+                    final: { src: 'images/recent-werk-card1.svg', alt: 'Final title sequence frame preview' }
                 },
                 video: {
                     title: 'Title Sequence Preview',
@@ -502,7 +528,7 @@
                         url: 'https://player.vimeo.com/video/1188101611?badge=0&autopause=0&player_id=0&app_id=58479',
                         title: 'SOUND_OF_METAL_TITLE_SEQUENCE'
                     },
-                    poster: 'images/ae-sound-of-metal.svg'
+                    poster: 'images/recent-werk-card1.svg'
                 },
                 hideHeroVisual: true,
                 hideFlowSection: true
