@@ -88,15 +88,6 @@ img {
     display: block;
 }
 
-a,
-button,
-.button,
-[role='button'],
-input[type='submit'],
-input[type='button'] {
-    cursor: url('../images/smiley-cursor.svg') 8 8, pointer;
-}
-
 a {
     color: inherit;
     text-decoration: none;
@@ -406,8 +397,27 @@ button {
    Home Page
    ========================================================== */
 .home-hero {
+    position: relative;
+    overflow: hidden;
     padding-top: 120px;
     padding-bottom: 100px;
+}
+
+.home-hero-hare {
+    position: absolute;
+    z-index: 0;
+    width: min(82vw, 900px);
+    height: auto;
+    max-height: calc(100% - 24px);
+    right: 0;
+    bottom: 12px;
+    opacity: 1;
+    pointer-events: none;
+}
+
+.home-hero-grid {
+    position: relative;
+    z-index: 1;
 }
 
 .home-meta {
@@ -1719,6 +1729,13 @@ button {
     .home-hero {
         padding-top: 100px;
         padding-bottom: 80px;
+    }
+
+    .home-hero-hare {
+        width: 112vw;
+        right: -14vw;
+        bottom: 12px;
+        opacity: 1;
     }
 
     .home-hero-grid {
