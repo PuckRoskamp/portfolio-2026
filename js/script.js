@@ -1,5 +1,38 @@
 ﻿// Active navigation + dynamic year + lightweight contact behavior
 (() => {
+    const themeToggle = document.querySelector('[data-theme-toggle]');
+    const savedTheme = localStorage.getItem('portfolio-theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDarkMode = savedTheme ? savedTheme === 'dark' : systemPrefersDark;
+
+    const updateTheme = (darkMode, animate = false) => {
+        if (animate) {
+            document.documentElement.classList.add('theme-is-changing');
+        }
+        document.body.classList.toggle('darkmode', darkMode);
+        if (animate) {
+            window.setTimeout(() => {
+                document.documentElement.classList.remove('theme-is-changing');
+            }, 260);
+        }
+        if (!themeToggle) return;
+
+        themeToggle.setAttribute('aria-pressed', darkMode ? 'true' : 'false');
+        themeToggle.setAttribute('aria-label', darkMode ? 'Switch to light mode' : 'Switch to dark mode');
+    };
+
+    document.documentElement.classList.add('theme-is-initializing');
+    updateTheme(isDarkMode);
+    document.documentElement.classList.remove('theme-is-initializing');
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const darkMode = !document.body.classList.contains('darkmode');
+            localStorage.setItem('portfolio-theme', darkMode ? 'dark' : 'light');
+            updateTheme(darkMode, true);
+        });
+    }
+
     const bodyPage = document.body.dataset.page;
     const navLinks = document.querySelectorAll('.nav-link');
 
