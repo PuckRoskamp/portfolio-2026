@@ -527,7 +527,7 @@
             // After Effects project with optional video section
             'ae-sound-of-metal': {
                 titleHtml: 'Sound of Metal<br />Title Sequence',
-                intro: 'Eindproject voor After Effects Basics. Een typografische title sequence waarin ritme, stilte en spanning uit de film visueel samenkomen.',
+                intro: 'Afgerond eindproject voor After Effects Basics. Een typografische title sequence waarin ritme, stilte en spanning uit de film visueel samenkomen.',
                 details: {
                     date: 'April 2026',
                     type: 'After Effects Basics',
