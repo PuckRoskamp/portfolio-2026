@@ -40,7 +40,7 @@
     --text: #0d0d0d;
     --text-light: #fdfdfd;
     --muted: #7a7a7a;
-    --accent: #5765af;
+    --accent: #aa78a6;
     --border: #ececec;
     --surface: #ffffff;
     --surface-alt: #f4f6f9;
@@ -377,8 +377,8 @@ button {
     overflow: hidden;
     border-top: 1px solid var(--border);
     padding: 88px 0;
-    background-color: #5765af;
-    color: var(--text-light);
+    background-color: var(--bg);
+    color: var(--text);
 }
 
 .footer-inner {
@@ -440,7 +440,7 @@ button {
 
 .footer-phone,
 .footer-email {
-    color: var(--text-light);
+    color: var(--text);
     text-decoration: underline;
     text-decoration-color: transparent;
     text-underline-offset: 8px;
@@ -473,7 +473,7 @@ button {
     margin-top: 28px;
     padding-top: 18px;
     border-top: 1px solid var(--border);
-    color: var(--text-light);
+    color: var(--text);
     font-size: 0.76rem;
     line-height: 1.4;
     letter-spacing: 0.08em;
@@ -481,12 +481,12 @@ button {
 }
 
 .footer-ownership strong {
-    color: var(--text-light);
+    color: var(--text);
     font-weight: 700;
 }
 
 .darkmode .footer-ownership {
-    border-top-color: var(--text-light);
+    border-top-color: var(--text);
 }
 
 /* ==========================================================
