@@ -1641,6 +1641,50 @@ button {
     transform: translateY(-1px);
 }
 
+.cookie-banner {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 18px 32px;
+    background: var(--accent);
+    color: var(--accent-contrast);
+    box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.12);
+}
+
+.cookie-banner-message {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.cookie-banner-accept {
+    flex: 0 0 auto;
+    min-height: 52px;
+    padding: 10px 26px;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    transition: background-color var(--ease), color var(--ease);
+}
+
+.cookie-banner-accept:hover {
+    background: var(--accent-contrast);
+    color: var(--accent);
+}
+
+.cookie-banner-accept:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
 /* ==========================================================
    CV Page
    ========================================================== */
@@ -1790,6 +1834,18 @@ button {
 }
 
 @media (max-width: 760px) {
+    .cookie-banner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+        padding: 18px 20px max(18px, env(safe-area-inset-bottom));
+    }
+
+    .cookie-banner-accept {
+        min-height: 44px;
+        padding: 8px 20px;
+    }
+
     body {
         padding-top: 76px;
     }

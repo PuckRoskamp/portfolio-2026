@@ -1,5 +1,28 @@
 ﻿// Active navigation + dynamic year + lightweight contact behavior
 (() => {
+    const cookieConsentKey = 'portfolio-cookie-consent';
+    if (localStorage.getItem(cookieConsentKey) !== 'accepted') {
+        const cookieBanner = document.createElement('aside');
+        cookieBanner.className = 'cookie-banner';
+        cookieBanner.setAttribute('aria-label', 'Cookie-informatie');
+
+        const cookieMessage = document.createElement('p');
+        cookieMessage.className = 'cookie-banner-message';
+        cookieMessage.textContent = 'Deze website gebruikt lokale opslag om je voorkeuren te onthouden. Er worden geen persoonsgegevens opgeslagen of gedeeld met derden.';
+
+        const acceptButton = document.createElement('button');
+        acceptButton.className = 'cookie-banner-accept';
+        acceptButton.type = 'button';
+        acceptButton.textContent = 'ACCEPTEREN';
+        acceptButton.addEventListener('click', () => {
+            localStorage.setItem(cookieConsentKey, 'accepted');
+            cookieBanner.remove();
+        });
+
+        cookieBanner.append(cookieMessage, acceptButton);
+        document.body.appendChild(cookieBanner);
+    }
+
     const themeToggle = document.querySelector('[data-theme-toggle]');
     const savedTheme = localStorage.getItem('portfolio-theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
